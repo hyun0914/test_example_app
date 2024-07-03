@@ -87,6 +87,9 @@ dependencies:
   flutter_spinkit: ^5.2.1
   introduction_screen: ^3.1.14
   flutter_native_splash: ^2.4.0
+  number_paginator: ^0.4.1
+  pager: ^0.0.6
+  flutter_custom_clippers: ^2.1.0
 
 dev_dependencies:
   flutter_test:

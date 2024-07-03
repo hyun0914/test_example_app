@@ -6,6 +6,7 @@ import 'screen/app_life_cycle_screen.dart';
 import 'screen/boxfit_screen.dart';
 import 'screen/button_trigger_screen.dart';
 import 'screen/click_widget_screen.dart';
+import 'screen/custom_clippers_screen.dart';
 import 'screen/device_info_screen.dart';
 import 'screen/dio_test_screen.dart';
 import 'screen/hide_widget_screen.dart';
@@ -185,6 +186,11 @@ class SelectTest extends StatelessWidget {
                 context: context,
                 onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const ListWheelScrollViewScreen())),
                 testTile: 'ListWheelScrollView 위젯'
+              ),
+              textPushBtn(
+                context: context,
+                onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const CustomClippersScreen())),
+                testTile: 'custom_clippers 패키지'
               ),
             ],
           ),

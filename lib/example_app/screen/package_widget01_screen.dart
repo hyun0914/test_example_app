@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:ui' as ui;
 import 'dart:typed_data';
+import 'dart:math' as math;
 
 import 'package:adaptive_action_sheet/adaptive_action_sheet.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -21,9 +22,9 @@ import 'package:focus_detector/focus_detector.dart';
 import 'package:hold_down_button/hold_down_button.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:image_picker/image_picker.dart';
-import 'dart:math' as math;
-
 import 'package:intl/intl.dart';
+import 'package:number_paginator/number_paginator.dart';
+import 'package:pager/pager.dart';
 import 'package:scroll_screenshot/scroll_screenshot.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:slide_countdown/slide_countdown.dart';
@@ -237,8 +238,8 @@ class PackageWidget01Screen extends StatelessWidget {
                   children: [
                     const SizedBox(height: 20,),
                     SizedBox(
-                      width: 200.0,
-                      height: 100.0,
+                      width: 200,
+                      height: 70,
                       child: Shimmer.fromColors(
                         baseColor: Colors.green,
                         highlightColor: Colors.amberAccent,
@@ -253,6 +254,22 @@ class PackageWidget01Screen extends StatelessWidget {
                         ),
                       ),
                     ),
+
+                    // 참고 사이트
+                    // https://velog.io/@tygerhwang/FLUTTER-Shimmer
+                    Shimmer.fromColors(
+                      baseColor: Colors.grey.shade300,
+                      highlightColor: Colors.grey.shade100,
+                      child:  Container(
+                        width: 200,
+                        height: 40,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(12),
+                          color: Colors.black
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 16,),
 
                     // 참고 사이트
                     // https://kimhyeongi.tistory.com/61
@@ -456,6 +473,28 @@ class PackageWidget01Screen extends StatelessWidget {
                         ),
                       ),
                     ),
+
+                    const SizedBox(height: 20,),
+                    NumberPaginator(
+                      numberPages: 4,
+                      config: NumberPaginatorUIConfig(
+                        buttonSelectedForegroundColor: Colors.limeAccent,
+                        buttonUnselectedForegroundColor: Colors.white,
+                        buttonUnselectedBackgroundColor: Colors.grey,
+                        buttonSelectedBackgroundColor: Colors.blueGrey,
+                        buttonShape: BeveledRectangleBorder(
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                      ),
+                      onPageChange: (int index) { },
+                    ),
+                    const SizedBox(height: 8,),
+                    Pager(
+                      currentPage: 1,
+                      totalPages: 5,
+                      onPageChanged: (page) {},
+                    ),
+                    const SizedBox(height: 20,),
       
                     Container(
                       width: 400,
