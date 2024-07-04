@@ -2,6 +2,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 import 'widget/default_scaffold.dart';
+import 'widget/snack_bar_view.dart';
 
 // 참고 사이트
 // flutter button trigger
@@ -34,7 +35,10 @@ class _ButtonTriggerScreenState extends State<ButtonTriggerScreen> {
                 key: triggerKey,
                 statesController: statesController,
                 onPressed: () {
-                  print('버튼 1');
+                  snackBarView(
+                    context: context,
+                    message: '버튼 1'
+                  );
                 },
                 child: const Text('버튼 1')
               ),

@@ -150,7 +150,7 @@ class SelectTest extends StatelessWidget {
               textPushBtn(
                 context: context,
                 onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const DeviceInfoScreen())),
-                testTile: '앱 설정 이동'
+                testTile: '앱 정보'
               ),
               textPushBtn(
                 context: context,

@@ -3,6 +3,7 @@ import 'package:intl/intl.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
 import 'widget/default_scaffold.dart';
+import 'widget/snack_bar_view.dart';
 
 
 class DateRelatedScreen extends StatelessWidget {
@@ -12,10 +13,10 @@ class DateRelatedScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     // 오늘 날짜 가져오는 법
     DateTime today = DateTime.now();
-    print(today);
+    snackBarView(context:context, message:'$today');
 
     String freeRemainingDays = '';
-    String expDt = '2024-05-24 00:02:00';
+    String expDt = '2024-09-24 00:02:00';
     Duration diffTime = DateTime.parse(expDt).difference(today);
     int days = diffTime.inDays + 1;
 
@@ -45,59 +46,65 @@ class DateRelatedScreen extends StatelessWidget {
               children: [
                 Text(freeRemainingDays),
                 ElevatedButton(
-                  onPressed: (){
+                  onPressed: () {
                     DateTime date2 = today.subtract(const Duration(days: 10));
                     int result1 = today.compareTo(date2);
                     int result2 = date2.compareTo(today);
                     // 앞일자면 -1을 뒤일자면 1을 반환한다. 같은날짜이면 0을 반환한다.
                     // 참고 사이트 https://in-coding.tistory.com/74
-                    print(result1); // 1
-                    print(result2); // -1
+                    // result1 결과 값 1
+                    // result2 결과 값 -1
+                    snackBarView(
+                      context: context,
+                      message: 'result1: $result1\nresult2: $result2'
+                    );
                   },
                   child: const Text('날짜 비교(compareTo)')
                 ),
+                const SizedBox(height: 10,),
                 ElevatedButton(
-                  onPressed: (){
+                  onPressed: () {
                     Duration diff = today.difference(DateTime.parse('2023-06-30'));
                     Duration diff2 = DateTime.parse('2023-06-30').difference(today);
-                    print ('diff ${diff.inDays}'); // 2024-01-17 기준 201
-                    print ('diff2 ${diff2.inDays}'); // 2024-01-17 기준 -201
-                    print ('${DateTime.parse('2023-11-27').difference(DateTime.parse('2023-11-30')).inDays}');
-                    print ('diff3 ${diff2.inMinutes}'); // 2024-01-17 기준 -290848
+                    // diff ${diff.inDays} 2024-01-17 기준 201
+                    // diff2 ${diff2.inDays} 2024-01-17 기준 -201
+                    // diff3 ${diff2.inMinutes} 2024-01-17 기준 -290848
                     DateTime yesterday = today.subtract(const Duration(days: 1));
                     Duration diff4 = yesterday.difference(today);
-                    print ('diff4 $diff4');
+
+                    snackBarView(
+                      context: context,
+                      message: 'diff ${diff.inDays}\n'
+                      'diff2 ${diff2.inDays}\n'
+                      'inDays ${DateTime.parse('2023-11-27').difference(DateTime.parse('2023-11-30')).inDays}\n'
+                      'diff3 ${diff2.inMinutes}\n'
+                      'diff4 $diff4'
+                    );
                     // 참고 사이트
                     // https://nsinc.tistory.com/224
                     // https://accompani-i.tistory.com/321
                   },
                   child: const Text('Duration')
                 ),
+                const SizedBox(height: 10,),
                 ElevatedButton(
-                  onPressed: (){
+                  onPressed: () {
                     // 월 가져오기
                     dynamic month = today.month;
-                    print(month);
 
                     // 일 가져오기
                     dynamic day = today.day;
-                    print(day);
 
                     // 요일 가져오기
                     initializeDateFormatting();
-                    dynamic yoil = DateFormat('EEEE', 'ko_KR').format(today);
-                    print(yoil);
+                    dynamic yoIl = DateFormat('EEEE', 'ko_KR').format(today);
 
                     // 어제 날짜 구하는법
                     DateTime yesterday = today.subtract(const Duration(days: 1));
-                    print(yesterday);
 
                     // 날짜 빼고 더하는 법
                     DateTime dayM = DateTime(today.year, today.month, today.day-1);
-                    print(dayM);
-
                     DateTime dayP = DateTime(today.year, today.month, today.day+1);
-                    print(dayP);
 
                     // 날짜 형식을 변환
                     String dateTimeFormat({String format = 'yyyy.MM.dd', required String dateTime}) {
@@ -106,8 +113,18 @@ class DateRelatedScreen extends StatelessWidget {
                     String todayMonth1 = dateTimeFormat(format: 'yyyy.MM', dateTime: today.toString());
                     String todayMonth2 = dateTimeFormat(format: 'yyyy-MM', dateTime: today.toString());
                     // 예시) 1 yyyy.MM  2 yyyy-MM 3  yyyy.MM.dd
-                    print(todayMonth1);
-                    print(todayMonth2);
+
+                    snackBarView(
+                      context: context,
+                      message: 'month $month\n'
+                      'day $day\n'
+                      'yoIl $yoIl\n'
+                      'yesterday $yesterday\n'
+                      'dayM $dayM\n'
+                      'dayP $dayP\n'
+                      'todayMonth1 $todayMonth1\n'
+                      'todayMonth2 $todayMonth2\n'
+                    );
 
                     // 참고 사이트
                     // https://cyj893.github.io/flutter/Flutter4
@@ -115,28 +132,34 @@ class DateRelatedScreen extends StatelessWidget {
                   },
                   child: const Text('날짜 관련 코드')
                 ),
+                const SizedBox(height: 10,),
                 ElevatedButton(
-                  onPressed: (){
+                  onPressed: () {
+                    List<dynamic> mondayToSunday = [];
+                    // 월요일 부터 일요일 까지 날짜 가져 오기
+                    for(int i=0; i<7; i++) {
+                      DateTime date = today.subtract(Duration(days: today.weekday -1 -i));
+                      mondayToSunday.add(DateFormat('yyyy-MM-dd').format(date));
+                    }
+                    snackBarView(
+                      context: context,
+                      message: 'mondayToSunday $mondayToSunday\n'
+                    );
+                  },
+                  child: const Text('월요일 부터 일요일 까지')
+                ),
+                const SizedBox(height: 10,),
+                ElevatedButton(
+                  onPressed: () {
                     // weekday > 1~7의 해당 날짜 요일의 날짜 값을 가져올 수 있다.(1 == 월, ~ 7 == 일 )
                     DateTime monDay = today.subtract(Duration(days: today.weekday - 1));
                     DateTime sunDay = today.subtract(Duration(days: today.weekday - 7));
-                    print(monDay);
-                    print(sunDay);
-
-                    // 월요일 부터 일요일 까지 날짜 가져오기
-                    for(int i=0; i<7; i++) {
-                      DateTime date = today.subtract(Duration(days: today.weekday -1 -i));
-                      print(DateFormat('yyyy-MM-dd').format(date));
-                    }
 
                     // 첫날, 마지막 날 값 가져오기
                     String firstDay = DateFormat('yy.MM.dd').format(DateTime(today.year, today.month, 1));
                     // 다음 달 0일로 설정 하면 이번 달의 마지막 날 값을 가쟈온다.
                     String lastDay = DateFormat('yy.MM.dd').format(DateTime(today.year, today.month + 1, 0));
                     String lastDayDay = DateFormat('dd').format(DateTime(today.year, today.month + 1, 0));
-                    print(firstDay);
-                    print(lastDay);
-                    print(lastDayDay);
 
                     // 참고 사이트
                     // https://cyj893.github.io/flutter/Flutter4_2
@@ -162,7 +185,6 @@ class DateRelatedScreen extends StatelessWidget {
                     var previousLastDay = DateFormat('dd').format(DateTime(today.year, int.parse(previousMonthText) + 1, 0));
 
                     int forStartDay = previousDate.day - (31 -today.day);
-                    print('$forStartDay');
 
                     for (int i=forStartDay; i<=int.parse(previousLastDay); i++) {
                       previousDayText = '$i';
@@ -178,9 +200,18 @@ class DateRelatedScreen extends StatelessWidget {
                         dayText = '0$i';
                       }
                       selectedMonthInfo.add('${today.year}.$zeroMonth.$dayText');
-                      //isCheckDay.add(false);
                     }
-                    print(selectedMonthInfo);
+
+                    snackBarView(
+                      context: context,
+                      message: 'monDay $monDay\n'
+                      'sunDay $sunDay\n'
+                      'firstDay $firstDay\n'
+                      'lastDay $lastDay\n'
+                      'lastDayDay $lastDayDay\n'
+                      'forStartDay $forStartDay\n'
+                      'selectedMonthInfo $selectedMonthInfo\n'
+                    );
                   },
                   child: const Text('날짜 관련 코드2')
                 ),

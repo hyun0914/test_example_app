@@ -241,7 +241,7 @@ class CustomClippersScreen extends StatelessWidget {
             child: Container(
               height: 100,
               color: Colors.orange,
-              child: Center(child: Text("WaveClipperTwo(reverse: true)")),
+              child: const Center(child: Text("WaveClipperTwo(reverse: true)")),
             ),
           ),
           const SizedBox(height: 10.0),

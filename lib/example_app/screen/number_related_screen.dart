@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'dart:math';
 
 import 'widget/default_scaffold.dart';
+import 'widget/snack_bar_view.dart';
 
 class NumberRelatedScreen extends StatelessWidget {
   const NumberRelatedScreen({super.key});
@@ -18,10 +19,14 @@ class NumberRelatedScreen extends StatelessWidget {
                 child: ElevatedButton(
                   // 참고 사이트 https://m.blog.naver.com/chandong83/221950042761
                   onPressed: () async{
-                    dynamic getStr = await getRandom();
-                    print(getStr);
+                    await getRandom().then((value) {
+                      snackBarView(
+                        context: context,
+                        message: '랜덤 숫자,문자: $value\n'
+                      );
+                    });
                   },
-                  child: const Text('랜덤 숫자 생성')
+                  child: const Text('랜덤 숫자,문자 생성')
                 ),
               ),
 
@@ -31,11 +36,14 @@ class NumberRelatedScreen extends StatelessWidget {
                   // 참고 사이트 https://api.dart.dev/stable/3.0.5/dart-core/num/abs.html
                   onPressed: () {
                     // 숫자값 상수로 변경하기
-                    int test = -10;
-                    int absNumber = test.abs();
-                    print(absNumber);
+                    int minusNumber = -10;
+                    int absNumber = minusNumber.abs();
+                    snackBarView(
+                      context: context,
+                      message: 'minusNumber: $minusNumber\nabsNumber: $absNumber\n'
+                    );
                   },
-                  child: const Text('랜덤 숫자 생성')
+                  child: const Text('상수 abs()')
                 ),
               ),
             ],

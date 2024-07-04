@@ -10,6 +10,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 import 'package_widget01_screen.dart';
 import 'widget/default_scaffold.dart';
+import 'widget/snack_bar_view.dart';
 
 class DeviceInfoScreen extends StatelessWidget {
   const DeviceInfoScreen({super.key});
@@ -34,35 +35,53 @@ class DeviceInfoScreen extends StatelessWidget {
                 },
                 child: const Text('앱 설정 으로 이동')
               ),
-
+              const SizedBox(height: 10,),
               ElevatedButton(
                 onPressed: () {
                   // 참고 사이트
                   // https://childcare-daddy.tistory.com/5
                   // https://zeddios.tistory.com/1123
                   if(Platform.isAndroid) {
-                    print('android');
+                    snackBarView(
+                      context: context,
+                      message: 'android'
+                    );
                   }
                   else if(Platform.isIOS) {
-                    print('IOS');
+                    snackBarView(
+                      context: context,
+                      message: 'IOS'
+                    );
                   }
                   else if(kIsWeb) {
-                    print('Web');
+                    snackBarView(
+                      context: context,
+                      message: 'Web'
+                    );
                   }
                 },
                 child: const Text('플랫폼(Platform) 체크')
               ),
-
+              const SizedBox(height: 10,),
               ElevatedButton(
-                onPressed: () => packageInfoGet(),
+                onPressed: () => packageInfoGet().then((value) {
+                  snackBarView(
+                    context: context,
+                    message: '$value'
+                  );
+                }),
                 child: const Text('package_info_plus  테스트')
               ),
-
+              const SizedBox(height: 10,),
               ElevatedButton(
-                onPressed: () => iosInfo(),
+                onPressed: () => iosInfo().then((value) {
+                  snackBarView(
+                    context: context,
+                    message: '$value'
+                  );
+                }),
                 child: const Text('ios_utsname_ext  테스트')
               ),
-
             ],
           ),
         ),
@@ -104,11 +123,10 @@ Future<List<String?>> packageInfoGet() async {
   getPackageInfo.add(packageInfo.buildSignature);
   getPackageInfo.add(packageInfo.buildNumber);
   showToast(msg: getPackageInfo.toString());
-  print(getPackageInfo);
   return getPackageInfo;
 }
 
-Future<void> iosInfo() async {
+Future<String> iosInfo() async {
   var machineId = '';
   var productName = '';
   final deviceInfoPlugin = DeviceInfoPlugin();
@@ -117,6 +135,7 @@ Future<void> iosInfo() async {
     machineId = deviceData.utsname.machine;
     productName = machineId.iOSProductName;
 
-    print(productName);
+   return productName;
   }
+  return productName;
 }
