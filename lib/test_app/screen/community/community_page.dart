@@ -75,63 +75,7 @@ class _CommunityPageState extends State<CommunityPage> {
                    ],
                  )
                 ),
-                SliverGrid(
-                  delegate: SliverChildBuilderDelegate(
-                    (context, index){
-                      return InkWell(
-                        splashColor: Colors.transparent,
-                        highlightColor: Colors.transparent,
-                        onTap: (){
-                          Navigator.of(context).push(MaterialPageRoute(builder: (context) => const CommunityDetails()));
-                        },
-                        child: Column(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.fromLTRB(13, 7, 13, 7),
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(10.0),
-                                child: Image.asset('assets/images/chicken.jpg'),
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.fromLTRB(13, 0, 13, 7),
-                              child: Column(
-                                children: [
-                                  Text(
-                                    '글제목 $index',
-                                    style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold,),
-                                  ),
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Row(
-                                        children: [
-                                          ClipOval(child: Image.asset('assets/images/hen.png', fit: BoxFit.fill, width: 15, height: 15,)),
-                                          const SizedBox(width: 5,),
-                                          const Text('닉네임', style: TextStyle(fontSize: 12),),
-                                        ],
-                                      ),
-                                      const Row(
-                                        children: [
-                                          Icon(Icons.favorite, size: 14,),
-                                          Text('0', style: TextStyle(fontSize: 12),),
-                                        ],
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      );
-                    },
-                    childCount : childCount,
-                  ),
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                  ),
-                ),
+                communityList(childCount: childCount),
                 SliverToBoxAdapter(
                   child: Column(
                     children: [
@@ -206,4 +150,66 @@ class _CommunityPageState extends State<CommunityPage> {
       ),
     );
   }
+}
+
+Widget communityList({
+  required int childCount,
+}) {
+  return SliverGrid(
+    delegate: SliverChildBuilderDelegate(
+      (context, index){
+        return InkWell(
+          splashColor: Colors.transparent,
+          highlightColor: Colors.transparent,
+          onTap: (){
+            Navigator.of(context).push(MaterialPageRoute(builder: (context) => const CommunityDetails()));
+          },
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.fromLTRB(13, 7, 13, 7),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(10.0),
+                  child: Image.asset('assets/images/chicken.jpg'),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(13, 0, 13, 7),
+                child: Column(
+                  children: [
+                    Text(
+                      '글제목 $index',
+                      style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold,),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
+                          children: [
+                            ClipOval(child: Image.asset('assets/images/hen.png', fit: BoxFit.fill, width: 15, height: 15,)),
+                            const SizedBox(width: 5,),
+                            const Text('닉네임', style: TextStyle(fontSize: 12),),
+                          ],
+                        ),
+                        const Row(
+                          children: [
+                            Icon(Icons.favorite, size: 14,),
+                            Text('0', style: TextStyle(fontSize: 12),),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        );
+      },
+      childCount : childCount,
+    ),
+    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+      crossAxisCount: 2,
+    ),
+  );
 }
