@@ -1,3 +1,4 @@
+import 'package:fast_cached_network_image/fast_cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 import 'screen/address_search_screen.dart';
@@ -5,9 +6,10 @@ import 'screen/animated_widget_screen.dart';
 import 'screen/app_life_cycle_screen.dart';
 import 'screen/boxfit_screen.dart';
 import 'screen/button_trigger_screen.dart';
+import 'screen/cache_image_widget_screen.dart';
 import 'screen/click_widget_screen.dart';
 import 'screen/custom_clippers_screen.dart';
-import 'screen/device_info_screen.dart';
+import 'screen/apps_device_info_screen.dart';
 import 'screen/dio_test_screen.dart';
 import 'screen/hide_widget_screen.dart';
 import 'screen/introduction_packages_screen.dart';
@@ -149,8 +151,8 @@ class SelectTest extends StatelessWidget {
               ),
               textPushBtn(
                 context: context,
-                onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const DeviceInfoScreen())),
-                testTile: '앱 정보'
+                onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const AppsDeviceInfoScreen())),
+                testTile: '앱 및 기기 정보'
               ),
               textPushBtn(
                 context: context,
@@ -191,6 +193,15 @@ class SelectTest extends StatelessWidget {
                 context: context,
                 onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const CustomClippersScreen())),
                 testTile: 'custom_clippers 패키지'
+              ),
+              textPushBtn(
+                context: context,
+                onPressed: () async {
+                  await FastCachedImageConfig.init(clearCacheAfter: const Duration(days: 15)).then((value) {
+                    Navigator.of(context).push(MaterialPageRoute(builder: (_) => const CacheImageWidgetScreen()));
+                  });
+                },
+                testTile: '캐시 이미지 위젯'
               ),
             ],
           ),

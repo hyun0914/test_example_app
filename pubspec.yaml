@@ -48,7 +48,7 @@ dependencies:
   badges: ^3.1.2
   flutter_rating_bar: ^4.0.1
   d_chart: ^2.6.3
-  package_info_plus: ^5.0.1
+  package_info_plus: ^8.0.0
   snapping_sheet: ^3.1.0
   shimmer: ^3.0.0
   cached_network_image: ^3.3.1
@@ -90,6 +90,9 @@ dependencies:
   number_paginator: ^0.4.1
   pager: ^0.0.6
   flutter_custom_clippers: ^2.1.0
+  battery_plus: ^6.0.1
+  flutter_cache_manager: ^3.3.2
+  fast_cached_network_image: ^1.2.9
 
 dev_dependencies:
   flutter_test:

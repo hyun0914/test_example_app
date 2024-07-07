@@ -1,7 +1,9 @@
 import 'dart:io';
 
 import 'package:android_intent_plus/android_intent.dart';
+import 'package:battery_plus/battery_plus.dart';
 import 'package:device_info_plus/device_info_plus.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:ios_utsname_ext/extension.dart';
@@ -12,8 +14,8 @@ import 'package_widget01_screen.dart';
 import 'widget/default_scaffold.dart';
 import 'widget/snack_bar_view.dart';
 
-class DeviceInfoScreen extends StatelessWidget {
-  const DeviceInfoScreen({super.key});
+class AppsDeviceInfoScreen extends StatelessWidget {
+  const AppsDeviceInfoScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -82,6 +84,10 @@ class DeviceInfoScreen extends StatelessWidget {
                 }),
                 child: const Text('ios_utsname_ext  테스트')
               ),
+              ElevatedButton(
+                onPressed: () => batteryState(context: context),
+                child: const Text('battery_plus  테스트')
+              ),
             ],
           ),
         ),
@@ -138,4 +144,44 @@ Future<String> iosInfo() async {
    return productName;
   }
   return productName;
+}
+
+void batteryState({
+  required BuildContext context,
+}) {
+  var battery = Battery();
+  battery.onBatteryStateChanged.listen((BatteryState state) {
+    switch(state) {
+      case BatteryState.full:
+        snackBarView(
+          context: context,
+          message: '배터리 완전 충전 됨'
+        );
+      break;
+      case BatteryState.charging:
+        snackBarView(
+          context: context,
+          message: '배터리 충전 중'
+        );
+      break;
+      case BatteryState.connectedNotCharging:
+        snackBarView(
+          context: context,
+          message: '외부 장치와 연결 중, 배터리 충전은 되지 않음'
+        );
+      break;
+      case BatteryState.discharging:
+        snackBarView(
+          context: context,
+          message: '배터리 현재 에니지 잃는 중'
+        );
+      break;
+      case BatteryState.unknown:
+        snackBarView(
+          context: context,
+          message: '배터리 상태 알 수 없음'
+        );
+      break;
+    }
+  });
 }
