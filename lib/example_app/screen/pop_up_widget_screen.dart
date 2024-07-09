@@ -4,7 +4,7 @@ import 'package:intl/intl.dart';
 import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 
 import 'widget/default_scaffold.dart';
-import 'widget/show_snack_bar_view.dart';
+import 'widget/snack_bar_view.dart';
 
 // 참고 사이트
 // https://kyungsnim.net/77
@@ -52,7 +52,7 @@ class _PopUpWidgetScreenState extends State<PopUpWidgetScreen> {
                     allowViewNavigation: true,
                     onSubmit: (value) {
                       if(value == null) {
-                        showSnackBarView(context: context, snackBarMessage: '날짜를 선택해주세요.');
+                        snackBarView(context: context, message: '날짜를 선택해주세요.');
                       }
                       else {
                         String selDate = dateTimeFormat(format: 'yyyy-MM-dd', dateTime: value.toString());

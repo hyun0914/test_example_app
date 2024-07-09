@@ -93,6 +93,10 @@ dependencies:
   battery_plus: ^6.0.1
   flutter_cache_manager: ^3.3.2
   fast_cached_network_image: ^1.2.9
+  pdf: ^3.11.0
+  printing: ^5.13.1
+  webview_flutter: ^2.8.0
+  shared_preferences: ^2.2.3
 
 dev_dependencies:
   flutter_test:
@@ -122,6 +126,7 @@ flutter:
   #   - images/a_dot_ham.jpeg
   assets:
     - assets/images/
+    - assets/fonts/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

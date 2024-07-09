@@ -12,12 +12,14 @@ import 'screen/custom_clippers_screen.dart';
 import 'screen/apps_device_info_screen.dart';
 import 'screen/dio_test_screen.dart';
 import 'screen/hide_widget_screen.dart';
+import 'screen/internal_storage_screen.dart';
 import 'screen/introduction_packages_screen.dart';
 import 'screen/list_wheel_scroll_view_screen.dart';
 import 'screen/long_text_screen.dart';
 import 'screen/package_widget01_screen.dart';
 import 'screen/default_widget01_screen.dart';
 import 'screen/date_related_screen.dart';
+import 'screen/pdf_packages_screen.dart';
 import 'screen/print_screen.dart';
 import 'screen/responsive_widgets_screen.dart';
 import 'screen/tab_bar_screen.dart';
@@ -27,6 +29,7 @@ import 'screen/pop_up_widget_screen.dart';
 import 'screen/hero_screen.dart';
 import 'screen/table_widget_screen.dart';
 import 'screen/text_field_screen.dart';
+import 'screen/web_view_packages_screen.dart';
 import 'screen/widget/default_scaffold.dart';
 
 class SelectTest extends StatelessWidget {
@@ -202,6 +205,21 @@ class SelectTest extends StatelessWidget {
                   });
                 },
                 testTile: '캐시 이미지 위젯'
+              ),
+              textPushBtn(
+                context: context,
+                onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const PdfPackagesScreen())),
+                testTile: 'PDF 패키지'
+              ),
+              textPushBtn(
+                context: context,
+                onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const WebViewPackagesScreen())),
+                testTile: 'WebView 패키지'
+              ),
+              textPushBtn(
+                context: context,
+                onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const InternalStorageScreen())),
+                testTile: '내부 저장'
               ),
             ],
           ),
