@@ -11,14 +11,14 @@ import 'widget/default_scaffold.dart';
 // 웹뷰 뒤로가기
 // https://kbwplace.tistory.com/175
 
-class WebViewPackagesScreen extends StatefulWidget {
-  const WebViewPackagesScreen({super.key});
+class WebViewPackageScreen extends StatefulWidget {
+  const WebViewPackageScreen({super.key});
 
   @override
-  State<WebViewPackagesScreen> createState() => _WebViewPackagesScreenState();
+  State<WebViewPackageScreen> createState() => _WebViewPackageScreenState();
 }
 
-class _WebViewPackagesScreenState extends State<WebViewPackagesScreen> {
+class _WebViewPackageScreenState extends State<WebViewPackageScreen> {
   @override
   void initState() {
     super.initState();

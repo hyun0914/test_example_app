@@ -2,6 +2,7 @@ import 'package:fast_cached_network_image/fast_cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 import 'screen/address_search_screen.dart';
+import 'screen/animated_splash_packages_screen.dart';
 import 'screen/animated_widget_screen.dart';
 import 'screen/app_life_cycle_screen.dart';
 import 'screen/boxfit_screen.dart';
@@ -19,7 +20,7 @@ import 'screen/long_text_screen.dart';
 import 'screen/package_widget01_screen.dart';
 import 'screen/default_widget01_screen.dart';
 import 'screen/date_related_screen.dart';
-import 'screen/pdf_packages_screen.dart';
+import 'screen/pdf_package_screen.dart';
 import 'screen/print_screen.dart';
 import 'screen/responsive_widgets_screen.dart';
 import 'screen/tab_bar_screen.dart';
@@ -29,7 +30,7 @@ import 'screen/pop_up_widget_screen.dart';
 import 'screen/hero_screen.dart';
 import 'screen/table_widget_screen.dart';
 import 'screen/text_field_screen.dart';
-import 'screen/web_view_packages_screen.dart';
+import 'screen/web_view_package_screen.dart';
 import 'screen/widget/default_scaffold.dart';
 
 class SelectTest extends StatelessWidget {
@@ -208,18 +209,23 @@ class SelectTest extends StatelessWidget {
               ),
               textPushBtn(
                 context: context,
-                onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const PdfPackagesScreen())),
+                onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const PdfPackageScreen())),
                 testTile: 'PDF 패키지'
               ),
               textPushBtn(
                 context: context,
-                onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const WebViewPackagesScreen())),
+                onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const WebViewPackageScreen())),
                 testTile: 'WebView 패키지'
               ),
               textPushBtn(
                 context: context,
                 onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const InternalStorageScreen())),
                 testTile: '내부 저장'
+              ),
+              textPushBtn(
+                context: context,
+                onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const AnimatedSplashPackageScreen())),
+                testTile: 'animated_splash_screen 패키지'
               ),
             ],
           ),

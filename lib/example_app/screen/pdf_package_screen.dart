@@ -44,14 +44,14 @@ import 'widget/default_scaffold.dart';
 final controller = TextEditingController();
 String setText = '텍스트';
 
-class PdfPackagesScreen extends StatefulWidget {
-  const PdfPackagesScreen({super.key});
+class PdfPackageScreen extends StatefulWidget {
+  const PdfPackageScreen({super.key});
 
   @override
-  State<PdfPackagesScreen> createState() => _PdfPackagesScreenState();
+  State<PdfPackageScreen> createState() => _PdfPackageScreenState();
 }
 
-class _PdfPackagesScreenState extends State<PdfPackagesScreen> {
+class _PdfPackageScreenState extends State<PdfPackageScreen> {
 
   Future<String?> askName(BuildContext context) {
     return showDialog(
