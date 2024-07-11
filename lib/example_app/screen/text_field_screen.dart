@@ -2,6 +2,7 @@ import 'package:currency_text_input_formatter/currency_text_input_formatter.dart
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
+import 'package:flutter_multi_formatter/flutter_multi_formatter.dart';
 
 import 'widget/default_scaffold.dart';
 import 'widget/text_field_error_msg.dart';
@@ -27,6 +28,17 @@ class TextFieldScreen extends StatelessWidget {
             keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
             child: Column(
               children: [
+                // 참고 사이트
+                // https://flutterawesome.com/multi-formatter-with-flutter/
+                TextFormField(
+                  keyboardType: TextInputType.phone,
+                  inputFormatters: [MaskedInputFormatter("000 0000 0000")],
+                  decoration: const InputDecoration(
+                    border: OutlineInputBorder(borderSide: BorderSide(color: Colors.grey),),
+                    focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.grey),),
+                  ),
+                ),
+
                 // 참고 사이트
                 // https://annhee.tistory.com/72
                 // https://velog.io/@adbr/FocusScope

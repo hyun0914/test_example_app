@@ -88,6 +88,34 @@ class AppsDeviceInfoScreen extends StatelessWidget {
                 onPressed: () => batteryState(context: context),
                 child: const Text('battery_plus  테스트')
               ),
+              ElevatedButton(
+                onPressed: () {
+                  // 참고 사이트
+                  // https://m.blog.naver.com/chandong83/221890678439
+                  // https://devmg.tistory.com/196
+                  // https://power-of-optimism.tistory.com/55
+                  snackBarView(
+                    context: context,
+                    message: '앱 화면 크기 ${MediaQuery.of(context).size}\n'
+                    '앱 화면 높이 ${MediaQuery.of(context).size.height}\n'
+                    '앱 화면 넓이 ${MediaQuery.of(context).size.width}\n'
+                    '화면 배율 ${MediaQuery.of(context).devicePixelRatio}\n'
+                    // orientation
+                    // 디바이스의 방향 (landscape(가로 모드), portrait(세로 모드))
+                    '디바이스의 방향 ${MediaQuery.of(context).orientation}\n'
+                    // padding
+                    // 디바이스의 화면 가장자리 패딩(상태 표시줄, 내비게이션 바, 노치 영역 등)
+                    '상단 ${MediaQuery.of(context).padding.top}\n'
+                    '하단 ${MediaQuery.of(context).padding.bottom}\n'
+                    '왼쪽 ${MediaQuery.of(context).padding.left}\n'
+                    '오른쪽 ${MediaQuery.of(context).padding.right}\n'
+                    // viewInsets
+                    // 키보드가 올라왔을 때 하단의 인셋 값 확인
+                    '상태 표시줄 높이 ${MediaQuery.of(context).viewInsets}\n'
+                  );
+                },
+                child: const Text('디바이스 크기')
+              ),
             ],
           ),
         ),
