@@ -1,5 +1,6 @@
 import 'package:fast_cached_network_image/fast_cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:tutorial_coach_mark/tutorial_coach_mark.dart';
 
 import 'screen/address_search_screen.dart';
 import 'screen/animated_splash_packages_screen.dart';
@@ -39,8 +40,125 @@ class SelectTest extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ScrollController scrollController = ScrollController();
+    GlobalKey tutorialKey = GlobalKey();
+    GlobalKey tutorialKey2 = GlobalKey();
+    GlobalKey tutorialKey3 = GlobalKey();
+
+    dynamic targetFocusBasic({
+      required dynamic identify,
+      required GlobalKey keyTarget,
+      ShapeLightFocus? shape,
+      double? paddingFocus,
+      required ContentAlign align,
+      required EdgeInsets padding,
+      required CrossAxisAlignment crossAxisAlignment,
+      required List<Widget> children,
+    }) {
+      return TargetFocus(
+        identify: identify,
+        keyTarget: keyTarget,
+        shape: shape ?? ShapeLightFocus.RRect,
+        color: Colors.black26,
+        enableOverlayTab: true,
+        focusAnimationDuration: const Duration(milliseconds: 400),
+        unFocusAnimationDuration: const Duration(milliseconds: 400),
+        paddingFocus: paddingFocus,
+        contents: [
+          TargetContent(
+            align: align,
+            padding: padding,
+            builder: (context, controller) {
+              return Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: crossAxisAlignment,
+                children: children,
+              );
+            },
+          ),
+        ],
+      );
+    }
+
+    void showTutorial() {
+      TutorialCoachMark(
+        targets: [
+          targetFocusBasic(
+            identify: 'Target 1',
+            keyTarget: tutorialKey,
+            shape: ShapeLightFocus.Circle,
+            paddingFocus: 1,
+            align: ContentAlign.left,
+            padding: const EdgeInsets.fromLTRB(160, 0, 0, 10),
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text('Target 1 설명', style: TextStyle(fontSize: 16, color: Colors.white),)
+            ],
+          ),
+          targetFocusBasic(
+            identify: 'Target 2',
+            keyTarget: tutorialKey2,
+            shape: ShapeLightFocus.RRect,
+            paddingFocus: 1,
+            align: ContentAlign.top,
+            padding: const EdgeInsets.fromLTRB(160, 0, 0, 10),
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text('Target 2 설명', style: TextStyle(fontSize: 16, color: Colors.white),)
+            ],
+          ),
+          targetFocusBasic(
+            identify: 'Target 3',
+            keyTarget: tutorialKey3,
+            shape: ShapeLightFocus.RRect,
+            paddingFocus: 1,
+            align: ContentAlign.top,
+            padding: const EdgeInsets.fromLTRB(160, 0, 0, 10),
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text('Target 3 설명', style: TextStyle(fontSize: 16, color: Colors.white),)
+            ],
+          ),
+        ],
+        colorShadow: Colors.grey.shade200,
+        onClickTarget: (target) {
+          print('onClickTarget $target');
+        },
+        onClickTargetWithTapPosition: (target, tapDetails) {
+          print('onClickTargetWithTapPosition\n$target\n$tapDetails');
+          if(target.identify == 'Target 2') {
+            scrollController.jumpTo(scrollController.position.maxScrollExtent);
+          }
+        },
+        onClickOverlay: (target) {
+          print('onClickOverlay $target');
+          if(target.identify == 'Target 2') {
+            scrollController.jumpTo(scrollController.position.maxScrollExtent);
+          }
+        },
+        onSkip: () {
+          print('onSkip');
+          return true;
+        },
+        onFinish: () {
+          print('onFinish');
+        },
+      ).show(context: context);
+    }
+
     return DefaultScaffold(
+      appBar: AppBar(
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(right: 10),
+            child: GestureDetector(
+              onTap: () => showTutorial(),
+              child: const Text('튜토리얼 시작', style: TextStyle(fontSize: 20),)
+            ),
+          ),
+        ],
+      ),
       floatingActionButton: FloatingActionButton(
+        key: tutorialKey,
         onPressed: () {
           // 참고 사이트
           // https://velog.io/@wannabeing/Flutter-ListView-%EC%8A%A4%ED%81%AC%EB%A1%A4-%EB%A7%A8-%EB%B0%91%EC%9C%BC%EB%A1%9C-%EA%B3%A0%EC%A0%95%ED%95%98%EA%B8%B0
@@ -74,6 +192,7 @@ class SelectTest extends StatelessWidget {
           child: Column(
             children: [
               textPushBtn(
+                keyValue: tutorialKey2,
                 context: context,
                 onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const HeroScreen())),
                 testTile: 'Hero'
@@ -213,6 +332,7 @@ class SelectTest extends StatelessWidget {
                 testTile: 'PDF 패키지'
               ),
               textPushBtn(
+                keyValue: tutorialKey3,
                 context: context,
                 onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const WebViewPackageScreen())),
                 testTile: 'WebView 패키지'
@@ -236,11 +356,13 @@ class SelectTest extends StatelessWidget {
 }
 
 Widget textPushBtn({
-  required final BuildContext context,
-  required final void Function() onPressed,
-  required final String testTile,
+  GlobalKey? keyValue,
+  required BuildContext context,
+  required void Function() onPressed,
+  required String testTile,
 }) {
   return Center(
+    key: keyValue,
     child: Padding(
       padding: const EdgeInsets.only(bottom: 10),
       child: ElevatedButton(
