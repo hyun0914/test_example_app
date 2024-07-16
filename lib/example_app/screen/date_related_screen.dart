@@ -47,6 +47,26 @@ class DateRelatedScreen extends StatelessWidget {
                 Text(freeRemainingDays),
                 ElevatedButton(
                   onPressed: () {
+                    String dateStr = "2024.07.14";
+                    // 정규식에서 \D를 사용하려면 \\D로 작성
+                    // RegExp('\\D') 정규식을 사용하여 모든 비숫자 문자를 제거
+                    dynamic dateReplaceAll = DateTime.parse(dateStr.replaceAll(RegExp('\\D'), ""));
+                    // r은 Dart에서 raw 문자열을 의미
+                    // raw 문자열을 사용하면 백슬래시를 이스케이프할 필요가 없음
+                    dynamic dateReplaceAll2 = DateTime.parse(dateStr.replaceAll(RegExp(r'\D'), ""));
+
+                    snackBarView(
+                      context: context,
+                      message: '$dateStr\n'
+                      'dateReplaceAll: $dateReplaceAll\n'
+                      'dateReplaceAll2: $dateReplaceAll2\n'
+                    );
+                  },
+                  // 문자열에 \ 문자를 포함하려면 이스케이프 문자('\\')
+                  child: const Text('(\\\\D), (r\\D)')
+                ),
+                ElevatedButton(
+                  onPressed: () {
                     DateTime date2 = today.subtract(const Duration(days: 10));
                     int result1 = today.compareTo(date2);
                     int result2 = date2.compareTo(today);
