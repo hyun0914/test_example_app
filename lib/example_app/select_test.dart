@@ -12,6 +12,7 @@ import 'screen/cache_image_widget_screen.dart';
 import 'screen/click_widget_screen.dart';
 import 'screen/custom_clippers_screen.dart';
 import 'screen/apps_device_info_screen.dart';
+import 'screen/data_comparison_screen.dart';
 import 'screen/dio_test_screen.dart';
 import 'screen/hide_widget_screen.dart';
 import 'screen/internal_storage_screen.dart';
@@ -151,6 +152,9 @@ class SelectTest extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(right: 10),
             child: GestureDetector(
+              // FormatException: It was not possible to obtain target position (Target 1).오류 발생
+              // Future.delayed(const Duration(seconds: 5), showTutorial); 화면이 그려지기 전에 호출 해서 문제 발생
+              // https://stackoverflow.com/questions/70270985/flutter-tutorialcoachmark-wrong-position
               onTap: () => showTutorial(),
               child: const Text('튜토리얼 시작', style: TextStyle(fontSize: 20),)
             ),
@@ -346,6 +350,11 @@ class SelectTest extends StatelessWidget {
                 context: context,
                 onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const AnimatedSplashPackageScreen())),
                 testTile: 'animated_splash_screen 패키지'
+              ),
+              textPushBtn(
+                context: context,
+                onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const DataComparisonScreen())),
+                testTile: '데이터 비교'
               ),
             ],
           ),
