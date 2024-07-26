@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import 'widget/default_scaffold.dart';
+import 'widget/snack_bar_view.dart';
+
 class AppLifeCycleScreen extends StatefulWidget {
   const AppLifeCycleScreen({super.key});
 
@@ -8,6 +11,18 @@ class AppLifeCycleScreen extends StatefulWidget {
 }
 
 class _AppLifeCycleScreenState extends State<AppLifeCycleScreen> with WidgetsBindingObserver {
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addObserver(this);
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    WidgetsBinding.instance.removeObserver(this);
+  }
 
   // 참고 사이트
   // https://bb-library.tistory.com/215
@@ -22,31 +37,36 @@ class _AppLifeCycleScreenState extends State<AppLifeCycleScreen> with WidgetsBin
       // 포그라운드 상태 - 앱이 화면에 다시 시작하는 경우, 최초 앱 실행때 X
       // 재개됨
       case AppLifecycleState.resumed:
+        snackBarView(context: context, message: 'AppLifecycleState.resumed');
         break;
 
       // 앱이 비활성화 - (Android, iOS) 모두 전화 통화를 할 때 해당 상태
       // 비활성화
       case AppLifecycleState.inactive:
+        snackBarView(context: context, message: 'AppLifecycleState.inactive');
         break;
 
       // 사용자가 홈버튼 등 으로 앱이 백그라운드 상태 - 사용자가 앱을 볼수 없는 상태
       // 일시 정지
       case AppLifecycleState.paused:
+        snackBarView(context: context, message: 'AppLifecycleState.paused');
         break;
 
       // 플러터 엔진은 호스팅, 모든 뷰에서 분리된 상태, 뷰가 Navigator. pop에 의해 파괴된 상태
       // 분리됨
       case AppLifecycleState.detached:
+        snackBarView(context: context, message: 'AppLifecycleState.detached');
         break;
 
       // 숨겨진
       case AppLifecycleState.hidden:
+        snackBarView(context: context, message: 'AppLifecycleState.hidden');
         break;
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return const DefaultScaffold();
   }
 }

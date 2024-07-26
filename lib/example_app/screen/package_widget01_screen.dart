@@ -18,6 +18,7 @@ import 'package:flutter_timer_countdown/flutter_timer_countdown.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:badges/badges.dart' as badges;
 import 'package:focus_detector/focus_detector.dart';
+import 'package:gauge_indicator/gauge_indicator.dart';
 import 'package:hold_down_button/hold_down_button.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:intl/intl.dart';
@@ -30,8 +31,10 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:tab_container/tab_container.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:timelines/timelines.dart';
+import 'package:visibility_detector/visibility_detector.dart';
 
 import 'widget/default_scaffold.dart';
+import 'widget/snack_bar_view.dart';
 
 // 참고 사이트 https://velog.io/@tmdgks2222/Flutter-intl
 // '###,###,###', '###,###' 결과 값은 같다
@@ -67,6 +70,8 @@ List<Widget> children = [];
 List<Widget> tabs = [];
 
 List<String> dropdownList = ['텍스트1', '텍스트2', '텍스트3', '텍스트4'];
+
+GlobalKey visibilityDetectorKey = GlobalKey();
 
 class PackageWidget01Screen extends StatelessWidget {
   const PackageWidget01Screen({super.key});
@@ -235,19 +240,32 @@ class PackageWidget01Screen extends StatelessWidget {
                 child: Column(
                   children: [
                     const SizedBox(height: 20,),
-                    SizedBox(
-                      width: 200,
-                      height: 70,
-                      child: Shimmer.fromColors(
-                        baseColor: Colors.green,
-                        highlightColor: Colors.amberAccent,
-                        child: const Text(
-                          '로딩 중',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontSize: 40.0,
-                            fontWeight:
-                            FontWeight.bold,
+                    VisibilityDetector(
+                      key: visibilityDetectorKey,
+                      onVisibilityChanged: (VisibilityInfo info) {
+                        // 참고 사이트
+                        // https://paran21.tistory.com/214
+                        if(info.visibleFraction == 1.0) {
+                          snackBarView(context: context, message: 'visibleFraction == 1.0');
+                        }
+                        else {
+                          snackBarView(context: context, message: 'visibleFraction == 0.0');
+                        }
+                      },
+                      child: SizedBox(
+                        width: 200,
+                        height: 70,
+                        child: Shimmer.fromColors(
+                          baseColor: Colors.green,
+                          highlightColor: Colors.amberAccent,
+                          child: const Text(
+                            '로딩 중',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: 40.0,
+                              fontWeight:
+                              FontWeight.bold,
+                            ),
                           ),
                         ),
                       ),
@@ -676,7 +694,41 @@ class PackageWidget01Screen extends StatelessWidget {
                         ],
                       ),
                     ),
-      
+
+                    AnimatedRadialGauge(
+                      duration: const Duration(seconds: 1),
+                      curve: Curves.easeInBack,
+                      radius: 80,
+                      // 글자 표시
+                      builder: (context, _, value) {
+                        return  RadialGaugeLabel(
+                          value: value,
+                          style: const TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.w700),
+                        );
+                      },
+                      value: 30,
+                      axis: GaugeAxis(
+                        min: 0,
+                        max: 100,
+                        degrees: 180,
+                        style: GaugeAxisStyle(
+                          thickness: 10,
+                          background: Colors.grey.shade400,
+                          segmentSpacing: 2,
+                        ),
+                        // pointer: null, 로 설정하면 pointer 표시 안됨
+                        pointer: const GaugePointer.triangle(
+                          borderRadius: 16 * 0.125,
+                          width: 20,
+                          height: 20,
+                          color: Color(0xFF193663),
+                        ),
+                        progressBar: const GaugeProgressBar.rounded(
+                          color: Color(0xFFB4C2F8),
+                        ),
+                      ),
+                    ),
+
                     AspectRatio(
                       key: scrollableGlobalKey,
                       aspectRatio: 1.4,
