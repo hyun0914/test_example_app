@@ -194,7 +194,7 @@ class PackageWidget01Screen extends StatelessWidget {
         print(result);
       }
     }
-
+    // 위젯이 화면에 나타나거나 사라질 때 마다 체크
     return FocusDetector(
       onFocusLost: () {
         print('onFocusLost');
@@ -240,11 +240,14 @@ class PackageWidget01Screen extends StatelessWidget {
                 child: Column(
                   children: [
                     const SizedBox(height: 20,),
+                    // 위젯이 화면에 나타나거나 사라질 때 마다 체크
                     VisibilityDetector(
                       key: visibilityDetectorKey,
                       onVisibilityChanged: (VisibilityInfo info) {
                         // 참고 사이트
                         // https://paran21.tistory.com/214
+                        // info.visibleFraction == 1.0 화면에 보임
+                        // info.visibleFraction == 0.0 화면에 안보임
                         if(info.visibleFraction == 1.0) {
                           snackBarView(context: context, message: 'visibleFraction == 1.0');
                         }

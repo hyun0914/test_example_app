@@ -43,6 +43,7 @@ class DefaultWidget01Screen extends StatelessWidget {
     final GlobalKey<TooltipState> tooltipKey2 = GlobalKey<TooltipState>();
     var primaryScrollController = PrimaryScrollController.of(context);
     bool switchValue = true;
+    double barValue = 280 *(40 / 100);
     return Scaffold(
       extendBody: true,
       // 참고 사이트 https://stackoverflow.com/questions/69001896/how-to-hide-floatingactionbutton-under-keyboard-and-not-textformfield-in-flutter
@@ -131,6 +132,31 @@ class DefaultWidget01Screen extends StatelessWidget {
                       onChanged: (value) {
                     
                       },
+                    ),
+                  ),
+
+                  Center(
+                    child: Stack(
+                      children: [
+                        Container(
+                          width: 280,
+                          height: 10,
+                          decoration: BoxDecoration(
+                            color: Colors.grey.shade400,
+                            borderRadius: const BorderRadius.all(Radius.circular(4)),
+                          ),
+                        ),
+                        Positioned(
+                          child: Container(
+                            width: barValue,
+                            height: 10,
+                            decoration: const BoxDecoration(
+                              color: Colors.black,
+                              borderRadius: BorderRadius.all(Radius.circular(4)),
+                            ),
+                          ),
+                        )
+                      ],
                     ),
                   ),
 
