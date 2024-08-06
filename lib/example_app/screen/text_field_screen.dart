@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:flutter_multi_formatter/flutter_multi_formatter.dart';
+import 'package:keyboard_actions/keyboard_actions.dart';
 
 import 'widget/default_scaffold.dart';
 import 'widget/text_field_error_msg.dart';
@@ -17,6 +18,7 @@ class TextFieldScreen extends StatelessWidget {
     TextEditingController emailController = TextEditingController();
     FocusNode emailFocus =  FocusNode();
     FocusNode searchFocus = FocusNode();
+    FocusNode actionsItem = FocusNode();
     ScrollController scrollController = ScrollController();
     // 다른 영역 클릭 시 키보드 비활성화 하는 패키지
     return KeyboardDismissOnTap(
@@ -28,6 +30,44 @@ class TextFieldScreen extends StatelessWidget {
             keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
             child: Column(
               children: [
+                // 아이폰 숫자키보드는 닫는 버튼이 없다 그래서 닫기 버튼을 추가하는 패키지
+                // https://stackoverflow.com/questions/53505500/flutter-how-to-add-done-button-in-number-keyboard-in-flutter
+                SizedBox(
+                  height: 100,
+                  child: KeyboardActions(
+                    // bottomAvoiderScrollPhysics: const NeverScrollableScrollPhysics(),
+                    config: KeyboardActionsConfig(
+                      keyboardActionsPlatform: KeyboardActionsPlatform.ALL,
+                      keyboardBarColor: Colors.grey[200],
+                      nextFocus: false,
+                      actions: [
+                        KeyboardActionsItem(
+                          focusNode: actionsItem,
+                          toolbarButtons: [
+                            (node) {
+                              return GestureDetector(
+                                onTap: () => node.unfocus(),
+                                child: Container(
+                                  padding: const EdgeInsets.all(10),
+                                  child: const Text("닫기", style: TextStyle(color: Colors.black),),
+                                ),
+                              );
+                            },
+                          ],
+                        ),
+                      ],
+                    ),
+                    child: TextField(
+                      focusNode: actionsItem,
+                      decoration: const InputDecoration(
+                        border: OutlineInputBorder(borderSide: BorderSide(color: Colors.green),),
+                        focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.green),),
+                      ),
+                      keyboardType: TextInputType.number,
+                    ),
+                  ),
+                ),
+                SizedBox(height: 10,),
                 // 참고 사이트
                 // https://flutterawesome.com/multi-formatter-with-flutter/
                 TextFormField(

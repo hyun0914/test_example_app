@@ -9,9 +9,35 @@ import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 import 'widget/default_scaffold.dart';
+import 'widget/snack_bar_view.dart';
+
+// dio 참고 사이트
+// https://velog.io/@leeeeeoy/Flutter-Dio-%EA%B0%84%EB%8B%A8-%EC%A0%95%EB%A6%AC
+
+// dio, http 패키지 비교
+// https://bangu4.tistory.com/367
+// https://kyungsnim.net/175
 
 // 참고 사이트 flutter dio download uri
 // https://stackoverflow.com/questions/59616610/how-can-i-download-file-using-flutter-dio
+
+// 어디서 요청했는지 확인 방법
+// dio.interceptors.add(InterceptorsWrapper(onRequest: (options, handler) async {
+//   print(options.uri);
+// }
+
+// dio headers 보내는 법
+// dio.interceptors.add(InterceptorsWrapper(onRequest: (options, handler) async {
+// const storage = FlutterSecureStorage();
+// final accessToken = await storage.read(key: 'ACCESS_TOKEN');
+// options.headers['Authorization-Access'] = 'Bearer $accessToken';
+// options.headers['Content-Type'] =
+// 'multipart/form-data'; //application/json; charset=utf-8
+// // options.headers['Accept'] = 'application/json';
+// return handler.next(options);
+// }));
+// 참고 사이트
+// // https://stackoverflow.com/questions/58750986/unable-to-add-header-for-post-method-in-dio-in-flutter
 
 class DioTestScreen extends StatelessWidget {
   const DioTestScreen({super.key});
@@ -20,13 +46,30 @@ class DioTestScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return DefaultScaffold(
       body: SafeArea(
-        child: Column(
-          children: [
-            ElevatedButton(
-              onPressed: () => dioDown(),
-              child: const Text('DIO 다운 테스트')
-            )
-          ],
+        child: Center(
+          child: Column(
+            children: [
+              ElevatedButton(
+                onPressed: () => dioDown(),
+                child: const Text('Dio 다운 테스트')
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  // 참고 사이트
+                  // https://velog.io/@tygerhwang/Flutter-Dio
+                  snackBarView(
+                    context: context,
+                    message:
+                    'dio.get(url, queryParameters: params) \n'
+                    'dio.post(url, data: params)\n'
+                    'dio.put(url, data: params)\n'
+                    'dio.delete(url, data: params)\n  '
+                  );
+                },
+                child: const Text('Dio 메소드')
+              ),
+            ],
+          ),
         ),
       ),
     );

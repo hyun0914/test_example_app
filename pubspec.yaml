@@ -102,6 +102,7 @@ dependencies:
   tutorial_coach_mark: ^1.2.11
   gauge_indicator: ^0.4.3
   visibility_detector: ^0.2.2
+  keyboard_actions: ^4.2.0
 
 dev_dependencies:
   flutter_test:
