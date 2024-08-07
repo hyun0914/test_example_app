@@ -46,6 +46,31 @@ class NumberRelatedScreen extends StatelessWidget {
                   child: const Text('상수 abs()')
                 ),
               ),
+
+              Container(
+                padding: const EdgeInsets.only(top: 10),
+                child: ElevatedButton(
+                  onPressed: () {
+                    // 참고 사이트
+                    // https://velog.io/@ssh0407/dart-%EC%88%AB%EC%9E%90-%EC%98%AC%EB%A6%BC-%EB%B2%84%EB%A6%BC-%EB%B0%98%EC%98%AC%EB%A6%BC-%EC%86%8C%EC%88%98%EC%A0%90-%EA%B8%B8%EC%9D%B4-%EA%B3%A0%EC%A0%95
+                    double decimalPoint = 4.9999;
+                    snackBarView(
+                      context: context,
+                      message:
+                      'decimalPoint: $decimalPoint\n'
+                      // 올림
+                      'decimalPoint 올림: ${decimalPoint.ceil()}\n'
+                      // 버림
+                      'decimalPoint 버림: ${decimalPoint.floor()}\n'
+                      // 반올림
+                      'decimalPoint 반올림: ${decimalPoint.round()}\n'
+                      // 소수점 고정
+                      'decimalPoint 소수점 고정: ${decimalPoint.toStringAsFixed(2)}\n'
+                    );
+                  },
+                  child: const Text('소수점 관련')
+                ),
+              ),
             ],
           ),
         ),

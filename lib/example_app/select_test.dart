@@ -328,7 +328,7 @@ class SelectTest extends StatelessWidget {
                     Navigator.of(context).push(MaterialPageRoute(builder: (_) => const CacheImageWidgetScreen()));
                   });
                 },
-                testTile: '캐시 이미지 위젯'
+                testTile: '캐시 이미지, 이미지 위젯'
               ),
               textPushBtn(
                 context: context,
