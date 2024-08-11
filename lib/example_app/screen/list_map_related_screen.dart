@@ -35,8 +35,8 @@ class ListMapRelatedScreen extends StatelessWidget {
                 // https://codechacha.com/ko/dart-finx-min-max-in-list/#google_vignette
                 List<int> listInt = [44, 2, 777, 9, 123 ];
 
-                int min = list[0];
-                int max = list[0];
+                int min = listInt[0];
+                int max = listInt[0];
                 for (var element in listInt) {
                   if (element < min) {
                     min = element;
@@ -46,8 +46,8 @@ class ListMapRelatedScreen extends StatelessWidget {
                   }
                 }
 
-                int min2 = list.reduce((current, next) => current < next ? current : next);
-                int max2 = list.reduce((current, next) => current > next ? current : next);
+                int min2 = listInt.reduce((current, next) => current < next ? current : next);
+                int max2 = listInt.reduce((current, next) => current > next ? current : next);
 
                 listInt.sort();
 
