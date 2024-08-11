@@ -8,7 +8,7 @@ import 'screen/animated_widget_screen.dart';
 import 'screen/app_life_cycle_screen.dart';
 import 'screen/boxfit_screen.dart';
 import 'screen/button_trigger_screen.dart';
-import 'screen/cache_image_widget_screen.dart';
+import 'screen/cache_img_img_file_select_widget_screen.dart';
 import 'screen/click_widget_screen.dart';
 import 'screen/custom_clippers_screen.dart';
 import 'screen/apps_device_info_screen.dart';
@@ -17,6 +17,7 @@ import 'screen/dio_test_screen.dart';
 import 'screen/hide_widget_screen.dart';
 import 'screen/internal_storage_screen.dart';
 import 'screen/introduction_packages_screen.dart';
+import 'screen/list_map_related_screen.dart';
 import 'screen/list_wheel_scroll_view_screen.dart';
 import 'screen/long_text_screen.dart';
 import 'screen/package_widget01_screen.dart';
@@ -325,10 +326,10 @@ class SelectTest extends StatelessWidget {
                 context: context,
                 onPressed: () async {
                   await FastCachedImageConfig.init(clearCacheAfter: const Duration(days: 15)).then((value) {
-                    Navigator.of(context).push(MaterialPageRoute(builder: (_) => const CacheImageWidgetScreen()));
+                    Navigator.of(context).push(MaterialPageRoute(builder: (_) => const CacheImgImgFileSelectWidgetScreen()));
                   });
                 },
-                testTile: '캐시 이미지, 이미지 위젯'
+                testTile: '캐시 이미지, 이미지, 파일 선택 위젯'
               ),
               textPushBtn(
                 context: context,
@@ -355,6 +356,11 @@ class SelectTest extends StatelessWidget {
                 context: context,
                 onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const DataComparisonScreen())),
                 testTile: '데이터 비교'
+              ),
+              textPushBtn(
+                context: context,
+                onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const ListMapRelatedScreen())),
+                testTile: 'List, Map 관련'
               ),
             ],
           ),

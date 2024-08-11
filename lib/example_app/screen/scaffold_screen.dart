@@ -26,7 +26,7 @@ class ScaffoldScreen extends StatelessWidget {
         // 참고 사이트
         // https://islet4you.tistory.com/entry/Flutter-AppBar-title-center-%EB%A1%9C-%EB%A7%9E%EC%B6%B0%EC%A3%BC%EA%B8%B0
         centerTitle: true,
-        title: const Text('test05'),
+        title: const Text('Drawer'),
         // drawer => leading 안에 아이콘 or 이미지
         // enddrawer => actions 안에 아이콘 or 이미지
         // leading: Icon(Icons.tab),

@@ -104,6 +104,7 @@ dependencies:
   visibility_detector: ^0.2.2
   keyboard_actions: ^4.2.0
   multi_image_picker_view: ^1.0.3
+  file_picker: ^8.0.7
 
 dev_dependencies:
   flutter_test:

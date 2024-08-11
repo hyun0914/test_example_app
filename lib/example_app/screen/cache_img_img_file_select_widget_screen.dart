@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:fast_cached_network_image/fast_cached_network_image.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
@@ -9,6 +10,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:multi_image_picker_view/multi_image_picker_view.dart';
 
 import 'widget/default_scaffold.dart';
+import 'widget/snack_bar_view.dart';
 
 // 이미지 성능 비교
 // https://kibua20.tistory.com/235
@@ -58,14 +60,14 @@ Future<dynamic> cacheManagerFunction() async {
 final ImagePicker picker2 = ImagePicker();
 List<XFile> imageFile2 = [];
 
-class CacheImageWidgetScreen extends StatefulWidget {
-  const CacheImageWidgetScreen({super.key});
+class CacheImgImgFileSelectWidgetScreen extends StatefulWidget {
+  const CacheImgImgFileSelectWidgetScreen({super.key});
 
   @override
-  State<CacheImageWidgetScreen> createState() => _CacheImageWidgetScreenState();
+  State<CacheImgImgFileSelectWidgetScreen> createState() => _CacheImgImgFileSelectWidgetScreenState();
 }
 
-class _CacheImageWidgetScreenState extends State<CacheImageWidgetScreen> {
+class _CacheImgImgFileSelectWidgetScreenState extends State<CacheImgImgFileSelectWidgetScreen> {
   @override
   Widget build(BuildContext context) {
     List<Widget> boxContents = [
@@ -106,6 +108,24 @@ class _CacheImageWidgetScreenState extends State<CacheImageWidgetScreen> {
       body: Center(
         child: ListView(
           children: [
+            const SizedBox(height: 12,),
+            ElevatedButton(
+              onPressed: () async {
+                FilePickerResult? result = await FilePicker.platform.pickFiles(
+                  // allowMultiple 멀티체크 활성화 여부
+                  // allowMultiple: false,
+                  // type: FileType.image,
+                );
+                if(result != null) {
+                  File file = File(result.files.single.path!);
+                  snackBarView(context: context, message: '$file');
+                }
+                else {
+                  snackBarView(context: context, message: '파일 선택 하지 않음');
+                }
+              },
+              child: const Text("파일 선택")
+            ),
             const SizedBox(height: 12,),
             selectPhoto(source: ImageSource.gallery),
             const SizedBox(height: 30,),
