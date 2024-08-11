@@ -31,6 +31,26 @@ class ListMapRelatedScreen extends StatelessWidget {
                 List<String> test1 = ['1', '2', '3'];
                 List<String> test2 = ['1', '2', '3'];
 
+                // list 최대 값, 최소 값
+                // https://codechacha.com/ko/dart-finx-min-max-in-list/#google_vignette
+                List<int> listInt = [44, 2, 777, 9, 123 ];
+
+                int min = list[0];
+                int max = list[0];
+                for (var element in listInt) {
+                  if (element < min) {
+                    min = element;
+                  }
+                  if (element > max) {
+                    max = element;
+                  }
+                }
+
+                int min2 = list.reduce((current, next) => current < next ? current : next);
+                int max2 = list.reduce((current, next) => current > next ? current : next);
+
+                listInt.sort();
+
                 snackBarView(
                   context: context,
                   message: 'list $list\n'
@@ -44,6 +64,12 @@ class ListMapRelatedScreen extends StatelessWidget {
                   'List 이어 붙히기 list1 $list1\n'
                   'List 이어 붙히기 list2 $list2\n'
                   '2개의 List 비교 ${listEquals(test1, test2)}\n'
+                  'listInt 의 min for in $min\n'
+                  'listInt 의 max for in $max\n'
+                  'listInt 의 min reduce $min2\n'
+                  'listInt 의 max reduce $max2\n'
+                  'listInt 의 min sort() first ${listInt.first}\n'
+                  'listInt 의 max sort() last ${listInt.last}\n'
                 );
               },
               child: const Text('List')
