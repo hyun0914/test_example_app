@@ -67,7 +67,7 @@ class TextFieldScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(height: 10,),
+                const SizedBox(height: 10,),
                 // 참고 사이트
                 // https://flutterawesome.com/multi-formatter-with-flutter/
                 TextFormField(

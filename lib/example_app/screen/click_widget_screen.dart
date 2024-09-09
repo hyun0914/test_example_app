@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:toggle_switch/toggle_switch.dart';
 
 import 'widget/default_scaffold.dart';
+import 'widget/snack_bar_view.dart';
 
 // 참고 사이트
 // https://ahang.tistory.com/15
@@ -19,34 +21,34 @@ class ClickWidgetScreen extends StatelessWidget {
             children: [
               InkWell(
                 onTap: () {
-                  debugPrint('InkWell-onTap');
+                  snackBarView(context: context, message: 'InkWell-onTap');
                 },
                 child: const Text('InWell 위젯', style: TextStyle(fontSize: 17),),
               ),
               const SizedBox(height: 20,),
               GestureDetector(
                 onTap: () {
-                  debugPrint('GestureDetector-onTap');
+                  snackBarView(context: context, message: 'GestureDetector-onTap');
                 },
                 child: const Text('GestureDetector 위젯(onTap)', style: TextStyle(fontSize: 17),),
               ),
               const SizedBox(height: 20,),
               GestureDetector(
                 onDoubleTap: () {
-                  debugPrint('GestureDetector-onDoubleTap');
+                  snackBarView(context: context, message: 'GestureDetector-onDoubleTap');
                 },
                 child: const Text('GestureDetector 위젯(onDoubleTap)', style: TextStyle(fontSize: 17),),
               ),
               const SizedBox(height: 20,),
               MaterialButton(
                 onPressed: () {
-                  debugPrint('MaterialButton-onPressed');
+                  snackBarView(context: context, message: 'MaterialButton-onPressed');
                 },
                 child: const Text('MaterialButton 위젯', style: TextStyle(fontSize: 17),),
               ),
               ElevatedButton(
                 onPressed: () {
-                  debugPrint('ElevatedButton-onPressed');
+                  snackBarView(context: context, message: 'ElevatedButton-onPressed');
                 },
                 child: const Text('ElevatedButton 위젯', style: TextStyle(fontSize: 17),),
               ),
@@ -54,7 +56,7 @@ class ClickWidgetScreen extends StatelessWidget {
               // https://blueoceannshark.tistory.com/entry/flutter-ElevatedButton-border-radiusElevatedbutton-%EB%91%A5%EA%B8%80%EA%B2%8C
               ElevatedButton(
                 onPressed: () {
-                  debugPrint('ElevatedButton-onPressed-RoundedRectangleBorder');
+                  snackBarView(context: context, message: 'ElevatedButton-onPressed-RoundedRectangleBorder');
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.greenAccent,
@@ -66,7 +68,7 @@ class ClickWidgetScreen extends StatelessWidget {
               ),
               ElevatedButton(
                 onPressed: () {
-                  debugPrint('ElevatedButton-onPressed-BeveledRectangleBorder');
+                  snackBarView(context: context, message: 'ElevatedButton-onPressed-BeveledRectangleBorder');
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.greenAccent,
@@ -78,7 +80,7 @@ class ClickWidgetScreen extends StatelessWidget {
               ),
               ElevatedButton(
                 onPressed: () {
-                  debugPrint('ElevatedButton-onPressed-CircleBorder');
+                  snackBarView(context: context, message: 'ElevatedButton-onPressed-CircleBorder');
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.greenAccent,
@@ -89,7 +91,7 @@ class ClickWidgetScreen extends StatelessWidget {
               ),
               TextButton(
                 onPressed: () {
-                  debugPrint('TextButton-onPressed');
+                  snackBarView(context: context, message: 'TextButton-onPressed');
                 },
                 child: const Text('TextButton 위젯', style: TextStyle(fontSize: 17),),
               ),
@@ -97,7 +99,7 @@ class ClickWidgetScreen extends StatelessWidget {
               IconButton(
                 highlightColor: Colors.transparent,
                 onPressed: (){
-                  debugPrint('클릭 됨');
+                  snackBarView(context: context, message: 'IconButton-onPressed');
                 },
                 icon: const Icon(Icons.add_circle)
               ),
@@ -110,20 +112,28 @@ class ClickWidgetScreen extends StatelessWidget {
                 itemBuilder: (context) {
                   return const [
                     PopupMenuItem(
-                        value: 0,
-                        child: Text('아이템 0')
+                      value: 0,
+                      child: Text('아이템 0')
                     ),
                     PopupMenuItem(
-                        value: 1,
-                        child: Text('아이템 1')
+                      value: 1,
+                      child: Text('아이템 1')
                     ),
                     PopupMenuItem(
-                        value: 2,
-                        child: Text('아이템 2')
+                      value: 2,
+                      child: Text('아이템 2')
                     ),
                   ];
                 }
               ),
+              ToggleSwitch(
+                initialLabelIndex: 0,
+                totalSwitches: 4,
+                labels: const ['모니터', '본체', '키보드', '마우스'],
+                onToggle: (index) {
+                  snackBarView(context: context, message: 'ToggleSwitch-onToggle $index');
+                },
+              )
             ],
           ),
         ),

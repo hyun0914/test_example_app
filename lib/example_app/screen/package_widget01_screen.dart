@@ -15,6 +15,7 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_time_picker_spinner/flutter_time_picker_spinner.dart';
 import 'package:flutter_timer_countdown/flutter_timer_countdown.dart';
+import 'package:flutter_xlider/flutter_xlider.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:badges/badges.dart' as badges;
 import 'package:focus_detector/focus_detector.dart';
@@ -491,6 +492,19 @@ class PackageWidget01Screen extends StatelessWidget {
                           onChanged: (value) {},
                         ),
                       ),
+                    ),
+
+                    const SizedBox(height: 20,),
+                    FlutterSlider(
+                      values: const [40, 60],
+                      rangeSlider: true,
+                      max: 80,
+                      min: 0,
+                      // axis: Axis.vertical, horizontal, vertical,
+                      // rtl: true, // true 하면 화살표 < , false 하면 >
+                      onDragging: (handlerIndex, lowerValue, upperValue) {
+
+                      },
                     ),
 
                     const SizedBox(height: 20,),
