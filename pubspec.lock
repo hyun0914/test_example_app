@@ -603,6 +603,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.4.1"
+  flutter_onboard:
+    dependency: "direct main"
+    description:
+      name: flutter_onboard
+      sha256: e8ed3f2cf8e1a92f35c148fd0fcfe401905a9298405a609f198a3f59108c55b7
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.4"
   flutter_oss_licenses:
     dependency: "direct main"
     description:
@@ -1237,6 +1245,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "6.0.2"
+  pinput:
+    dependency: "direct main"
+    description:
+      name: pinput
+      sha256: "7bf9aa7d0eeb3da9f7d49d2087c7bc7d36cd277d2e94cc31c6da52e1ebb048d0"
+      url: "https://pub.dev"
+    source: hosted
+    version: "5.0.0"
   platform:
     dependency: transitive
     description:
@@ -1578,6 +1594,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.2.2"
+  universal_platform:
+    dependency: transitive
+    description:
+      name: universal_platform
+      sha256: "64e16458a0ea9b99260ceb5467a214c1f298d647c659af1bff6d3bf82536b1ec"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.1.0"
   upower:
     dependency: transitive
     description:

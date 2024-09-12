@@ -20,10 +20,12 @@ import 'screen/introduction_packages_screen.dart';
 import 'screen/list_map_related_screen.dart';
 import 'screen/list_wheel_scroll_view_screen.dart';
 import 'screen/long_text_screen.dart';
+import 'screen/onboard_packages_screen.dart';
 import 'screen/package_widget01_screen.dart';
 import 'screen/default_widget01_screen.dart';
 import 'screen/date_related_screen.dart';
 import 'screen/pdf_package_screen.dart';
+import 'screen/pin_put_packages_screen.dart';
 import 'screen/print_screen.dart';
 import 'screen/responsive_widgets_screen.dart';
 import 'screen/tab_bar_screen.dart';
@@ -314,6 +316,11 @@ class SelectTest extends StatelessWidget {
               ),
               textPushBtn(
                 context: context,
+                onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const OnboardPackagesScreen())),
+                testTile: 'flutter_onboard 패키지'
+              ),
+              textPushBtn(
+                context: context,
                 onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const ListWheelScrollViewScreen())),
                 testTile: 'ListWheelScrollView 위젯'
               ),
@@ -361,6 +368,11 @@ class SelectTest extends StatelessWidget {
                 context: context,
                 onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const ListMapRelatedScreen())),
                 testTile: 'List, Map 관련'
+              ),
+              textPushBtn(
+                context: context,
+                onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const PinPutPackagesScreen())),
+                testTile: 'PinPut 패키지'
               ),
             ],
           ),
