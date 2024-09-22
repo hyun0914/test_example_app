@@ -6,7 +6,7 @@ import 'package:webview_flutter/webview_flutter.dart';
 import 'widget/default_scaffold.dart';
 
 // 참고 사이트
-// https://pjbelo.medium.com/flutter-webview-a-simple-demo-74fa6bb476d5
+// https://velog.io/@tygerhwang/Flutter-WebView-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0-1%ED%8E%B8
 
 // 웹뷰 뒤로가기
 // https://kbwplace.tistory.com/175
@@ -19,18 +19,20 @@ class WebViewPackageScreen extends StatefulWidget {
 }
 
 class _WebViewPackageScreenState extends State<WebViewPackageScreen> {
+  WebViewController? webViewController;
+
   @override
   void initState() {
     super.initState();
-    if (Platform.isAndroid) WebView.platform = SurfaceAndroidWebView();
+    webViewController = WebViewController()
+      ..loadRequest(Uri.parse('https://naver.com'))
+      ..setJavaScriptMode(JavaScriptMode.unrestricted);
   }
 
   @override
   Widget build(BuildContext context) {
-    return const DefaultScaffold(
-      body: WebView(
-        initialUrl: 'https://www.naver.com/',
-      ),
+    return DefaultScaffold(
+      body: WebViewWidget(controller: webViewController!),
     );
   }
 }

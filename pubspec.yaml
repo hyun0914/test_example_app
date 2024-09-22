@@ -19,7 +19,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: '>=3.4.0 <4.0.0'
+  sdk: ^3.5.0
 
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
@@ -34,7 +34,7 @@ dependencies:
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
-  cupertino_icons: ^1.0.6
+  cupertino_icons: ^1.0.8
   url_launcher: ^6.1.5
   image_picker: ^1.1.2
   fluttertoast: ^8.2.4
@@ -55,6 +55,7 @@ dependencies:
   syncfusion_flutter_datepicker: 24.1.47
   flutter_keyboard_visibility: ^6.0.0
   flutter_oss_licenses: ^3.0.2
+#  flutter pub run flutter_oss_licenses:generate.dart
   dio: ^5.4.3+1
   path_provider: ^2.1.3
   flutter_local_notifications: ^17.0.1
@@ -71,7 +72,6 @@ dependencies:
   logger: ^2.2.0
   scroll_screenshot: ^0.0.4
   image_gallery_saver: ^2.0.3
-  remedi_kopo: ^0.0.2
   bloc: ^8.1.4
   flutter_bloc: ^8.1.5
   equatable: ^2.0.5
@@ -95,7 +95,7 @@ dependencies:
   fast_cached_network_image: ^1.2.9
   pdf: ^3.11.0
   printing: ^5.13.1
-  webview_flutter: ^2.8.0
+  webview_flutter: ^4.9.0
   shared_preferences: ^2.2.3
   animated_splash_screen: ^1.3.0
   flutter_multi_formatter: ^2.12.8
@@ -119,7 +119,7 @@ dev_dependencies:
   # activated in the `analysis_options.yaml` file located at the root of your
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
-  flutter_lints: ^3.0.0
+  flutter_lints: ^4.0.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -141,10 +141,10 @@ flutter:
     - assets/fonts/
 
   # An image asset can refer to one or more resolution-specific "variants", see
-  # https://flutter.dev/assets-and-images/#resolution-aware
+  # https://flutter.dev/to/resolution-aware-images
 
   # For details regarding adding assets from package dependencies, see
-  # https://flutter.dev/assets-and-images/#from-packages
+  # https://flutter.dev/to/asset-from-package
 
   # To add custom fonts to your application, add a fonts section here,
   # in this "flutter" section. Each entry in this list should have a
@@ -164,7 +164,7 @@ flutter:
   #         weight: 700
   #
   # For details regarding fonts from package dependencies,
-  # see https://flutter.dev/custom-fonts/#from-packages
+  # see https://flutter.dev/to/font-from-package
 
 flutter_native_splash:
   color: "#088A08"
