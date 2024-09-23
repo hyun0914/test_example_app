@@ -3,7 +3,7 @@ PODS:
     - Flutter
   - connectivity_plus (0.0.1):
     - Flutter
-    - ReachabilitySwift
+    - FlutterMacOS
   - device_info_plus (0.0.1):
     - Flutter
   - DKImagePickerController/Core (4.3.9):
@@ -41,13 +41,13 @@ PODS:
     - DKImagePickerController/PhotoGallery
     - Flutter
   - Flutter (1.0.0)
-  - flutter_inappwebview (0.0.1):
+  - flutter_inappwebview_ios (0.0.1):
     - Flutter
-    - flutter_inappwebview/Core (= 0.0.1)
-    - OrderedSet (~> 5.0)
-  - flutter_inappwebview/Core (0.0.1):
+    - flutter_inappwebview_ios/Core (= 0.0.1)
+    - OrderedSet (~> 6.0.3)
+  - flutter_inappwebview_ios/Core (0.0.1):
     - Flutter
-    - OrderedSet (~> 5.0)
+    - OrderedSet (~> 6.0.3)
   - flutter_keyboard_visibility (0.0.1):
     - Flutter
   - flutter_local_notifications (0.0.1):
@@ -65,7 +65,7 @@ PODS:
     - Flutter
   - open_file_plus (1.0.0):
     - Flutter
-  - OrderedSet (5.0.0)
+  - OrderedSet (6.0.3)
   - package_info_plus (0.4.5):
     - Flutter
   - path_provider_foundation (0.0.1):
@@ -75,7 +75,6 @@ PODS:
     - Flutter
   - printing (1.0.0):
     - Flutter
-  - ReachabilitySwift (5.0.0)
   - scroll_screenshot (0.0.1):
     - Flutter
   - SDWebImage (5.19.6):
@@ -97,11 +96,11 @@ PODS:
 
 DEPENDENCIES:
   - battery_plus (from `.symlinks/plugins/battery_plus/ios`)
-  - connectivity_plus (from `.symlinks/plugins/connectivity_plus/ios`)
+  - connectivity_plus (from `.symlinks/plugins/connectivity_plus/darwin`)
   - device_info_plus (from `.symlinks/plugins/device_info_plus/ios`)
   - file_picker (from `.symlinks/plugins/file_picker/ios`)
   - Flutter (from `Flutter`)
-  - flutter_inappwebview (from `.symlinks/plugins/flutter_inappwebview/ios`)
+  - flutter_inappwebview_ios (from `.symlinks/plugins/flutter_inappwebview_ios/ios`)
   - flutter_keyboard_visibility (from `.symlinks/plugins/flutter_keyboard_visibility/ios`)
   - flutter_local_notifications (from `.symlinks/plugins/flutter_local_notifications/ios`)
   - flutter_native_splash (from `.symlinks/plugins/flutter_native_splash/ios`)
@@ -125,7 +124,6 @@ SPEC REPOS:
     - DKImagePickerController
     - DKPhotoGallery
     - OrderedSet
-    - ReachabilitySwift
     - SDWebImage
     - SwiftyGif
     - Toast
@@ -134,15 +132,15 @@ EXTERNAL SOURCES:
   battery_plus:
     :path: ".symlinks/plugins/battery_plus/ios"
   connectivity_plus:
-    :path: ".symlinks/plugins/connectivity_plus/ios"
+    :path: ".symlinks/plugins/connectivity_plus/darwin"
   device_info_plus:
     :path: ".symlinks/plugins/device_info_plus/ios"
   file_picker:
     :path: ".symlinks/plugins/file_picker/ios"
   Flutter:
     :path: Flutter
-  flutter_inappwebview:
-    :path: ".symlinks/plugins/flutter_inappwebview/ios"
+  flutter_inappwebview_ios:
+    :path: ".symlinks/plugins/flutter_inappwebview_ios/ios"
   flutter_keyboard_visibility:
     :path: ".symlinks/plugins/flutter_keyboard_visibility/ios"
   flutter_local_notifications:
@@ -180,27 +178,26 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   battery_plus: 1ff2e16ba75af2a78387f65476057a390b47885e
-  connectivity_plus: bf0076dd84a130856aa636df1c71ccaff908fa1d
-  device_info_plus: c6fb39579d0f423935b0c9ce7ee2f44b71b9fce6
+  connectivity_plus: ddd7f30999e1faaef5967c23d5b6d503d10434db
+  device_info_plus: 97af1d7e84681a90d0693e63169a5d50e0839a0d
   DKImagePickerController: 946cec48c7873164274ecc4624d19e3da4c1ef3c
   DKPhotoGallery: b3834fecb755ee09a593d7c9e389d8b5d6deed60
   file_picker: 09aa5ec1ab24135ccd7a1621c46c84134bfd6655
   Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
-  flutter_inappwebview: 3d32228f1304635e7c028b0d4252937730bbc6cf
+  flutter_inappwebview_ios: 6f63631e2c62a7c350263b13fa5427aedefe81d4
   flutter_keyboard_visibility: 0339d06371254c3eb25eeb90ba8d17dca8f9c069
   flutter_local_notifications: 4cde75091f6327eb8517fa068a0a5950212d2086
   flutter_native_splash: edf599c81f74d093a4daf8e17bd7a018854bc778
   fluttertoast: e9a18c7be5413da53898f660530c56f35edfba9c
-  geocoding_ios: a389ea40f6f548de6e63006a2e31bf66ff80769a
+  geocoding_ios: d7460f56e80e118d57678efe5c2cdc888739ff18
   image_gallery_saver: cb43cc43141711190510e92c460eb1655cd343cb
   image_picker_ios: c560581cceedb403a6ff17f2f816d7fea1421fc1
   open_file_plus: 05737718530c14cf02868e3b7754d7fe4df76d8b
-  OrderedSet: aaeb196f7fef5a9edf55d89760da9176ad40b93c
+  OrderedSet: e539b66b644ff081c73a262d24ad552a69be3a94
   package_info_plus: 58f0028419748fad15bf008b270aaa8e54380b1c
   path_provider_foundation: 2b6b4c569c0fb62ec74538f866245ac84301af46
   permission_handler_apple: 9878588469a2b0d0fc1e048d9f43605f92e6cec2
   printing: 233e1b73bd1f4a05615548e9b5a324c98588640b
-  ReachabilitySwift: 985039c6f7b23a1da463388634119492ff86c825
   scroll_screenshot: 0cd01b85365d369d0432861ad7e2e1c01b9c97f8
   SDWebImage: a79252b60f4678812d94316c91da69ec83089c9f
   shared_preferences_foundation: fcdcbc04712aee1108ac7fda236f363274528f78

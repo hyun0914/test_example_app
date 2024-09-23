@@ -39,7 +39,7 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
   final Connectivity _connectivity = Connectivity();
 
   void chekConnectivity() async {
-    ConnectivityResult connectivityResult = await _connectivity.checkConnectivity();
+    final List<ConnectivityResult> connectivityResult = await (Connectivity().checkConnectivity());
 
     if(connectivityResult == ConnectivityResult.wifi){
       toastView('WIFI 사용 중 입니다.');

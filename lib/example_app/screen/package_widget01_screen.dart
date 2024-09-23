@@ -849,10 +849,10 @@ class PackageWidget01Screen extends StatelessWidget {
                     ),
       
                     FlutterCarousel(
-                      options: CarouselOptions(
+                      options: FlutterCarouselOptions(
                         height: 400.0,
                         showIndicator: true,
-                        slideIndicator: const CircularSlideIndicator(),
+                        slideIndicator: CircularSlideIndicator(),
                         autoPlay: true,
                         autoPlayInterval: const Duration(seconds: 4),
                         enableInfiniteScroll: true,
