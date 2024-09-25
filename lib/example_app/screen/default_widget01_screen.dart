@@ -187,29 +187,6 @@ class DefaultWidget01Screen extends StatelessWidget {
                     ],
                   ),
 
-                  // 참고 사이트
-                  // https://eunjin3786.tistory.com/421
-                  // https://iosroid.tistory.com/36
-                  RichText(
-                    text: const TextSpan(
-                      children: [
-                        TextSpan(text: '텍스트', style: TextStyle(color: Colors.brown)),
-                        TextSpan(text: '텍스트10', style: TextStyle(color: Colors.indigo, fontSize: 20)),
-                        TextSpan(text: '각각 스타일 적용', style: TextStyle(color: Colors.green)),
-                      ]
-                    )
-                  ),
-
-                  const Text.rich(
-                    TextSpan(
-                      children: [
-                        TextSpan(text: '텍스트', style: TextStyle(color: Colors.brown)),
-                        TextSpan(text: '텍스트10', style: TextStyle(color: Colors.indigo, fontSize: 20)),
-                        TextSpan(text: '각각 스타일 적용', style: TextStyle(color: Colors.green)),
-                      ]
-                    )
-                  ),
-
                   const DropDownBut(),
 
                   // 참고 사이트 https://velog.io/@haram2/Tooltip-class

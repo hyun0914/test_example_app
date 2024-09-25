@@ -36,30 +36,24 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
     const MyPage(),
   ];
 
-  final Connectivity _connectivity = Connectivity();
-
-  void chekConnectivity() async {
+  void cheekConnectivity() async {
     final List<ConnectivityResult> connectivityResult = await (Connectivity().checkConnectivity());
 
-    if(connectivityResult == ConnectivityResult.wifi){
+    if(connectivityResult.contains(ConnectivityResult.wifi)){
       toastView('WIFI 사용 중 입니다.');
-      print('wifi 사용 확인');
     }
-    else if(connectivityResult == ConnectivityResult.mobile){
+    else if(connectivityResult.contains(ConnectivityResult.mobile)){
       toastView('모바일데이터 사용 중 입니다.');
-      print('모바일데이터 사용 확인');
     }
-    else
-      if(connectivityResult == ConnectivityResult.none){
+    else if(connectivityResult.contains(ConnectivityResult.none)){
       toastView('네트워크 연결을 확인하세요.');
-      print('네트워크 연결을 확인하세요.');
     }
   }
 
   @override
   void initState() {
-    chekConnectivity();
     super.initState();
+    cheekConnectivity();
   }
 
   @override

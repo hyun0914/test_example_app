@@ -1,4 +1,5 @@
 import 'package:fast_cached_network_image/fast_cached_network_image.dart';
+import 'package:floating_draggable_widget/floating_draggable_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:tutorial_coach_mark/tutorial_coach_mark.dart';
 
@@ -14,6 +15,8 @@ import 'screen/custom_clippers_screen.dart';
 import 'screen/apps_device_info_screen.dart';
 import 'screen/data_comparison_screen.dart';
 import 'screen/dio_test_screen.dart';
+import 'screen/flutter_slid_able_package_screen.dart';
+import 'screen/grid_view_widget_screen.dart';
 import 'screen/hide_widget_screen.dart';
 import 'screen/internal_storage_screen.dart';
 import 'screen/introduction_packages_screen.dart';
@@ -35,6 +38,7 @@ import 'screen/pop_up_widget_screen.dart';
 import 'screen/hero_screen.dart';
 import 'screen/table_widget_screen.dart';
 import 'screen/text_field_screen.dart';
+import 'screen/text_widget_screen.dart';
 import 'screen/web_view_package_screen.dart';
 import 'screen/widget/default_scaffold.dart';
 
@@ -149,22 +153,13 @@ class SelectTest extends StatelessWidget {
       ).show(context: context);
     }
 
-    return DefaultScaffold(
-      appBar: AppBar(
-        actions: [
-          Padding(
-            padding: const EdgeInsets.only(right: 10),
-            child: GestureDetector(
-              // FormatException: It was not possible to obtain target position (Target 1).오류 발생
-              // Future.delayed(const Duration(seconds: 5), showTutorial); 화면이 그려지기 전에 호출 해서 문제 발생
-              // https://stackoverflow.com/questions/70270985/flutter-tutorialcoachmark-wrong-position
-              onTap: () => showTutorial(),
-              child: const Text('튜토리얼 시작', style: TextStyle(fontSize: 20),)
-            ),
-          ),
-        ],
-      ),
-      floatingActionButton: FloatingActionButton(
+    return FloatingDraggableWidget(
+      floatingWidgetWidth: 40,
+      floatingWidgetHeight: 40,
+      // 초기 위치 값
+      dx: 340,
+      dy: 800,
+      floatingWidget: FloatingActionButton(
         key: tutorialKey,
         onPressed: () {
           // 참고 사이트
@@ -184,199 +179,230 @@ class SelectTest extends StatelessWidget {
           }
         },
       ),
-      body: SafeArea(
-        // 앱바, 하단바 간격만큼 띄우고 나서 위젯 보이게 설정
-        // top: kToolbarHeight 상단바
-        // bottom: kToolbarHeight을 하면 하단바
-        // margin: const EdgeInsets.only(bottom: kToolbarHeight),
-
-        // 참고 사이트 flutter appbar height size get
-        // https://stackoverflow.com/questions/50075945/how-to-get-appbar-height-in-flutter
-        // 높이를 디바이스크기 만큼 지정 후 앱바 크기만큼 줄인다.
-        // height: MediaQuery.of(context).size.height - (MediaQuery.of(context).padding.top + kToolbarHeight),
-        child: SingleChildScrollView(
-          controller: scrollController,
-          child: Column(
-            children: [
-              textPushBtn(
-                keyValue: tutorialKey2,
-                context: context,
-                onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const HeroScreen())),
-                testTile: 'Hero'
+      mainScreenWidget: DefaultScaffold(
+        appBar: AppBar(
+          actions: [
+            Padding(
+              padding: const EdgeInsets.only(right: 10),
+              child: GestureDetector(
+                // FormatException: It was not possible to obtain target position (Target 1).오류 발생
+                // Future.delayed(const Duration(seconds: 5), showTutorial); 화면이 그려지기 전에 호출 해서 문제 발생
+                // https://stackoverflow.com/questions/70270985/flutter-tutorialcoachmark-wrong-position
+                onTap: () => showTutorial(),
+                child: const Text('튜토리얼 시작', style: TextStyle(fontSize: 20),)
               ),
-              textPushBtn(
-                context: context,
-                onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const BoxFitScreen())),
-                testTile: 'Boxfilt'
-              ),
-              textPushBtn(
-                context: context,
-                onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const PackageWidget01Screen())),
-                testTile: '패키지 위젯'
-              ),
-              textPushBtn(
-                context: context,
-                onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const DefaultWidget01Screen())),
-                testTile: '기본 위젯'
-              ),
-              textPushBtn(
-                context: context,
-                onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const DateRelatedScreen())),
-                testTile: '날짜 관련'
-              ),
-              textPushBtn(
-                context: context,
-                onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const TabBarScreen())),
-                testTile: '탭바'
-              ),
-              textPushBtn(
-                context: context,
-                onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const ScaffoldScreen())),
-                testTile: 'Scaffold'
-              ),
-              textPushBtn(
-                context: context,
-                onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const NumberRelatedScreen())),
-                testTile: '숫자 관련'
-              ),
-              textPushBtn(
-                context: context,
-                onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const PopUpWidgetScreen())),
-                testTile: '팝업 위젯'
-              ),
-              textPushBtn(
-                context: context,
-                onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const AppLifeCycleScreen())),
-                testTile: '앱 라이프 사이클'
-              ),
-              textPushBtn(
-                context: context,
-                onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const TextFieldScreen())),
-                testTile: '텍스트 필드'
-              ),
-              textPushBtn(
-                context: context,
-                onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const DioTestScreen())),
-                testTile: 'dio'
-              ),
-              textPushBtn(
-                context: context,
-                onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const ButtonTriggerScreen())),
-                testTile: '버튼 트리거'
-              ),
-              textPushBtn(
-                context: context,
-                onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const HideWidgetsScreen())),
-                testTile: '위젯 숨기기'
-              ),
-              textPushBtn(
-                context: context,
-                onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const TableWidgetScreen())),
-                testTile: '테이블 위젯'
-              ),
-              textPushBtn(
-                context: context,
-                onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const PrintScreen())),
-                testTile: 'print 관련'
-              ),
-              textPushBtn(
-                context: context,
-                onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const AppsDeviceInfoScreen())),
-                testTile: '앱 및 기기 정보'
-              ),
-              textPushBtn(
-                context: context,
-                onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const ResponsiveWidgetsScreen())),
-                testTile: '반응형 위젯'
-              ),
-              textPushBtn(
-                context: context,
-                onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const LongTextScreen())),
-                testTile: '긴 텍스트'
-              ),
-              textPushBtn(
-                context: context,
-                onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const AnimatedWidgetScreen())),
-                testTile: '애너메이티드 위젯'
-              ),
-              textPushBtn(
-                context: context,
-                onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const ClickWidgetScreen())),
-                testTile: '클릭 위젯'
-              ),
-              textPushBtn(
-                context: context,
-                onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const AddressSearchScreen())),
-                testTile: '주소 검색'
-              ),
-              textPushBtn(
-                context: context,
-                onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const IntroductionPackagesScreen())),
-                testTile: 'introduction_screen 패키지'
-              ),
-              textPushBtn(
-                context: context,
-                onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const OnboardPackagesScreen())),
-                testTile: 'flutter_onboard 패키지'
-              ),
-              textPushBtn(
-                context: context,
-                onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const ListWheelScrollViewScreen())),
-                testTile: 'ListWheelScrollView 위젯'
-              ),
-              textPushBtn(
-                context: context,
-                onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const CustomClippersScreen())),
-                testTile: 'custom_clippers 패키지'
-              ),
-              textPushBtn(
-                context: context,
-                onPressed: () async {
-                  await FastCachedImageConfig.init(clearCacheAfter: const Duration(days: 15)).then((value) {
-                    Navigator.of(context).push(MaterialPageRoute(builder: (_) => const CacheImgImgFileSelectWidgetScreen()));
-                  });
-                },
-                testTile: '캐시 이미지, 이미지, 파일 선택 위젯'
-              ),
-              textPushBtn(
-                context: context,
-                onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const PdfPackageScreen())),
-                testTile: 'PDF 패키지'
-              ),
-              textPushBtn(
-                keyValue: tutorialKey3,
-                context: context,
-                onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const WebViewPackageScreen())),
-                testTile: 'WebView 패키지'
-              ),
-              textPushBtn(
-                context: context,
-                onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const InternalStorageScreen())),
-                testTile: '내부 저장'
-              ),
-              textPushBtn(
-                context: context,
-                onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const AnimatedSplashPackageScreen())),
-                testTile: 'animated_splash_screen 패키지'
-              ),
-              textPushBtn(
-                context: context,
-                onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const DataComparisonScreen())),
-                testTile: '데이터 비교'
-              ),
-              textPushBtn(
-                context: context,
-                onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const ListMapRelatedScreen())),
-                testTile: 'List, Map 관련'
-              ),
-              textPushBtn(
-                context: context,
-                onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const PinPutPackagesScreen())),
-                testTile: 'PinPut 패키지'
-              ),
-            ],
-          ),
-        )
+            ),
+          ],
+        ),
+        body: SafeArea(
+          // 앱바, 하단바 간격만큼 띄우고 나서 위젯 보이게 설정
+          // top: kToolbarHeight 상단바
+          // bottom: kToolbarHeight을 하면 하단바
+          // margin: const EdgeInsets.only(bottom: kToolbarHeight),
+      
+          // 참고 사이트 flutter appbar height size get
+          // https://stackoverflow.com/questions/50075945/how-to-get-appbar-height-in-flutter
+          // 높이를 디바이스크기 만큼 지정 후 앱바 크기만큼 줄인다.
+          // height: MediaQuery.of(context).size.height - (MediaQuery.of(context).padding.top + kToolbarHeight),
+          child: SingleChildScrollView(
+            controller: scrollController,
+            child: Column(
+              children: [
+                textPushBtn(
+                  keyValue: tutorialKey2,
+                  context: context,
+                  onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const HeroScreen())),
+                  testTile: 'Hero'
+                ),
+                textPushBtn(
+                  context: context,
+                  onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const BoxFitScreen())),
+                  testTile: 'Boxfilt'
+                ),
+                textPushBtn(
+                  context: context,
+                  onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const TextWidgetScreen())),
+                  testTile: 'Text 위젯'
+                ),
+                textPushBtn(
+                  context: context,
+                  onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const GridViewWidgetScreen())),
+                  testTile: 'GridView 위젯'
+                ),
+                textPushBtn(
+                  context: context,
+                  onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const PackageWidget01Screen())),
+                  testTile: '패키지 위젯'
+                ),
+                textPushBtn(
+                  context: context,
+                  onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const DefaultWidget01Screen())),
+                  testTile: '기본 위젯'
+                ),
+                textPushBtn(
+                  context: context,
+                  onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const DateRelatedScreen())),
+                  testTile: '날짜 관련'
+                ),
+                textPushBtn(
+                  context: context,
+                  onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const TabBarScreen())),
+                  testTile: '탭바'
+                ),
+                textPushBtn(
+                  context: context,
+                  onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const ScaffoldScreen())),
+                  testTile: 'Scaffold'
+                ),
+                textPushBtn(
+                  context: context,
+                  onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const NumberRelatedScreen())),
+                  testTile: '숫자 관련'
+                ),
+                textPushBtn(
+                  context: context,
+                  onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const PopUpWidgetScreen())),
+                  testTile: '팝업 위젯'
+                ),
+                textPushBtn(
+                  context: context,
+                  onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const AppLifeCycleScreen())),
+                  testTile: '앱 라이프 사이클'
+                ),
+                textPushBtn(
+                  context: context,
+                  onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const TextFieldScreen())),
+                  testTile: '텍스트 필드'
+                ),
+                textPushBtn(
+                  context: context,
+                  onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const DioTestScreen())),
+                  testTile: 'dio'
+                ),
+                textPushBtn(
+                  context: context,
+                  onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const ButtonTriggerScreen())),
+                  testTile: '버튼 트리거'
+                ),
+                textPushBtn(
+                  context: context,
+                  onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const HideWidgetsScreen())),
+                  testTile: '위젯 숨기기'
+                ),
+                textPushBtn(
+                  context: context,
+                  onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const TableWidgetScreen())),
+                  testTile: '테이블 위젯'
+                ),
+                textPushBtn(
+                  context: context,
+                  onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const PrintScreen())),
+                  testTile: 'print 관련'
+                ),
+                textPushBtn(
+                  context: context,
+                  onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const AppsDeviceInfoScreen())),
+                  testTile: '앱 및 기기 정보'
+                ),
+                textPushBtn(
+                  context: context,
+                  onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const ResponsiveWidgetsScreen())),
+                  testTile: '반응형 위젯'
+                ),
+                textPushBtn(
+                  context: context,
+                  onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const LongTextScreen())),
+                  testTile: '긴 텍스트'
+                ),
+                textPushBtn(
+                  context: context,
+                  onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const AnimatedWidgetScreen())),
+                  testTile: '애너메이티드 위젯'
+                ),
+                textPushBtn(
+                  context: context,
+                  onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const ClickWidgetScreen())),
+                  testTile: '클릭 위젯'
+                ),
+                textPushBtn(
+                  context: context,
+                  onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const AddressSearchScreen())),
+                  testTile: '주소 검색'
+                ),
+                textPushBtn(
+                  context: context,
+                  onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const IntroductionPackagesScreen())),
+                  testTile: 'introduction_screen 패키지'
+                ),
+                textPushBtn(
+                  context: context,
+                  onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const OnboardPackagesScreen())),
+                  testTile: 'flutter_onboard 패키지'
+                ),
+                textPushBtn(
+                  context: context,
+                  onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const ListWheelScrollViewScreen())),
+                  testTile: 'ListWheelScrollView 위젯'
+                ),
+                textPushBtn(
+                  context: context,
+                  onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const CustomClippersScreen())),
+                  testTile: 'custom_clippers 패키지'
+                ),
+                textPushBtn(
+                  context: context,
+                  onPressed: () async {
+                    await FastCachedImageConfig.init(clearCacheAfter: const Duration(days: 15)).then((value) {
+                      Navigator.of(context).push(MaterialPageRoute(builder: (_) => const CacheImgImgFileSelectWidgetScreen()));
+                    });
+                  },
+                  testTile: '캐시 이미지, 이미지, 파일 선택 위젯'
+                ),
+                textPushBtn(
+                  context: context,
+                  onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const PdfPackageScreen())),
+                  testTile: 'PDF 패키지'
+                ),
+                textPushBtn(
+                  keyValue: tutorialKey3,
+                  context: context,
+                  onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const WebViewPackageScreen())),
+                  testTile: 'WebView 패키지'
+                ),
+                textPushBtn(
+                  context: context,
+                  onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const InternalStorageScreen())),
+                  testTile: '내부 저장'
+                ),
+                textPushBtn(
+                  context: context,
+                  onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const AnimatedSplashPackageScreen())),
+                  testTile: 'animated_splash_screen 패키지'
+                ),
+                textPushBtn(
+                  context: context,
+                  onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const DataComparisonScreen())),
+                  testTile: '데이터 비교'
+                ),
+                textPushBtn(
+                  context: context,
+                  onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const ListMapRelatedScreen())),
+                  testTile: 'List, Map 관련'
+                ),
+                textPushBtn(
+                  context: context,
+                  onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const PinPutPackagesScreen())),
+                  testTile: 'PinPut 패키지'
+                ),
+                textPushBtn(
+                  context: context,
+                  onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const FlutterSlidAblePackageScreen())),
+                  testTile: 'flutter_slidable 패키지'
+                ),
+              ],
+            ),
+          )
+        ),
       ),
     );
   }

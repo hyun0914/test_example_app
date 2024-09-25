@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:ui' as ui;
 import 'dart:typed_data';
 import 'dart:math' as math;
+import 'dart:ui';
 
 import 'package:adaptive_action_sheet/adaptive_action_sheet.dart';
 import 'package:card_slider/card_slider.dart';
@@ -29,6 +30,9 @@ import 'package:scroll_screenshot/scroll_screenshot.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:slide_countdown/slide_countdown.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import 'package:spoiler_widget/models/text_spoiler_configs.dart';
+import 'package:spoiler_widget/models/widget_spoiler.dart';
+import 'package:spoiler_widget/spoiler_widget.dart';
 import 'package:tab_container/tab_container.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:timelines/timelines.dart';
@@ -492,6 +496,39 @@ class PackageWidget01Screen extends StatelessWidget {
                           onChanged: (value) {},
                         ),
                       ),
+                    ),
+
+                    const SizedBox(height: 20,),
+                    const SpoilerTextWidget(
+                      configuration: TextSpoilerConfiguration(
+                        isEnabled: true,
+                        maxParticleSize: 0.8,
+                        particleDensity: 2.4,
+                        speedOfParticles: 0.2,
+                        fadeRadius: 4,
+                        fadeAnimation: true,
+                        enableGesture: true,
+                        selection: TextSelection(baseOffset: 0, extentOffset: 16),
+                        style: TextStyle(
+                          fontSize: 40,
+                          color: Colors.green,
+                        ),
+                      ),
+                      text: 'SpoilerTextWidget',
+                    ),
+                    const SizedBox(height: 8,),
+                    SpoilerWidget(
+                      configuration: WidgetSpoilerConfiguration(
+                        isEnabled: true,
+                        maxParticleSize: 0.8,
+                        particleDensity: 4,
+                        speedOfParticles: 0.2,
+                        fadeRadius: 4,
+                        fadeAnimation: true,
+                        enableGesture: true,
+                        imageFilter: ImageFilter.blur(sigmaX: 30.0, sigmaY: 30.0),
+                      ),
+                      child: Image.asset('assets/images/hen.png', width: 200, height: 100,),
                     ),
 
                     const SizedBox(height: 20,),

@@ -369,6 +369,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.3.9"
+  easy_rich_text:
+    dependency: "direct main"
+    description:
+      name: easy_rich_text
+      sha256: "54e0ef20ee6de3f77a5db77d915db21e77d303467d934089a64c608e7f023e78"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.2.0"
   equatable:
     dependency: "direct main"
     description:
@@ -457,6 +465,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.1.0"
+  floating_draggable_widget:
+    dependency: "direct main"
+    description:
+      name: floating_draggable_widget
+      sha256: f701f4c77f7c47ec75e62d0625eab675a0b063e4bf6b32e77af75e5a8fe090e7
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.1.5"
   flutter:
     dependency: "direct main"
     description: flutter
@@ -699,6 +715,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "5.2.0"
+  flutter_slidable:
+    dependency: "direct main"
+    description:
+      name: flutter_slidable
+      sha256: "2c5611c0b44e20d180e4342318e1bbc28b0a44ad2c442f5df16962606fd3e8e3"
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.1.1"
   flutter_spinkit:
     dependency: "direct main"
     description:
@@ -1474,6 +1498,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.10.0"
+  spoiler_widget:
+    dependency: "direct main"
+    description:
+      name: spoiler_widget
+      sha256: "367f56b9e5c45a57c1fdcc0fb0bfbea673f360adb1e1517ae48fdf5c586e5e8b"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.5"
   sprintf:
     dependency: transitive
     description:
