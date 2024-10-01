@@ -28,6 +28,7 @@ import 'package:number_paginator/number_paginator.dart';
 import 'package:pager/pager.dart';
 import 'package:scroll_screenshot/scroll_screenshot.dart';
 import 'package:shimmer/shimmer.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 import 'package:slide_countdown/slide_countdown.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:spoiler_widget/models/text_spoiler_configs.dart';
@@ -292,6 +293,19 @@ class PackageWidget01Screen extends StatelessWidget {
                           color: Colors.black
                         ),
                       ),
+                    ),
+                    const SizedBox(height: 16,),
+
+                    const Skeletonizer(
+                      enabled: true,
+                      enableSwitchAnimation: true,
+                      child: Card(
+                        child: ListTile(
+                          title: Text('제목 입니다.'),
+                          subtitle: Text('부 제목 입니다.'),
+                          trailing: Icon(Icons.add_box, size: 40,),
+                        ),
+                      )
                     ),
                     const SizedBox(height: 16,),
 

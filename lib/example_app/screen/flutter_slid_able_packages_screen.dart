@@ -3,14 +3,14 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 
 import 'widget/default_scaffold.dart';
 
-class FlutterSlidAblePackageScreen extends StatefulWidget {
-  const FlutterSlidAblePackageScreen({super.key});
+class FlutterSlidAblePackagesScreen extends StatefulWidget {
+  const FlutterSlidAblePackagesScreen({super.key});
 
   @override
-  State<FlutterSlidAblePackageScreen> createState() => _FlutterSlidAblePackageScreenState();
+  State<FlutterSlidAblePackagesScreen> createState() => _FlutterSlidAblePackagesScreenState();
 }
 
-class _FlutterSlidAblePackageScreenState extends State<FlutterSlidAblePackageScreen> with SingleTickerProviderStateMixin {
+class _FlutterSlidAblePackagesScreenState extends State<FlutterSlidAblePackagesScreen> with SingleTickerProviderStateMixin {
   late final controller = SlidableController(this);
 
   @override
