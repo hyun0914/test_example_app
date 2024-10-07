@@ -32,8 +32,9 @@ class TextFieldScreen extends StatelessWidget {
               children: [
                 // 아이폰 숫자키보드는 닫는 버튼이 없다 그래서 닫기 버튼을 추가하는 패키지
                 // https://stackoverflow.com/questions/53505500/flutter-how-to-add-done-button-in-number-keyboard-in-flutter
-                SizedBox(
+                Container(
                   height: 100,
+                  padding: const EdgeInsets.only(left: 10, right: 10, bottom: 10),
                   child: KeyboardActions(
                     // bottomAvoiderScrollPhysics: const NeverScrollableScrollPhysics(),
                     config: KeyboardActionsConfig(
@@ -67,15 +68,32 @@ class TextFieldScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                const SizedBox(height: 10,),
+
                 // 참고 사이트
                 // https://flutterawesome.com/multi-formatter-with-flutter/
-                TextFormField(
-                  keyboardType: TextInputType.phone,
-                  inputFormatters: [MaskedInputFormatter("000 0000 0000")],
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(borderSide: BorderSide(color: Colors.grey),),
-                    focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.grey),),
+                Padding(
+                  padding: const EdgeInsets.only(left: 10, right: 10, bottom: 10),
+                  child: TextFormField(
+                    keyboardType: TextInputType.phone,
+                    inputFormatters: [MaskedInputFormatter("000 0000 0000")],
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(borderSide: BorderSide(color: Colors.grey),),
+                      focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.grey),),
+                    ),
+                  ),
+                ),
+
+                Padding(
+                  padding: EdgeInsets.only(left: 10, right: 10, bottom: 10),
+                  child: TextField(
+                    inputFormatters: [
+                      UpperCaseTextFormatter(),
+                    ],
+                    decoration: const InputDecoration(
+                      hintText: '대문자로 변환',
+                      border: OutlineInputBorder(borderSide: BorderSide(color: Colors.grey),),
+                      focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.grey),),
+                    ),
                   ),
                 ),
 
@@ -397,3 +415,14 @@ InputDecoration decoration = const InputDecoration(
     borderRadius: BorderRadius.all(Radius.circular(50.0),),
   ),
 );
+
+// 입력하는 모든 텍스트를 대문자로 변환
+class UpperCaseTextFormatter extends TextInputFormatter {
+  @override
+  TextEditingValue formatEditUpdate(TextEditingValue oldValue, TextEditingValue newValue) {
+    return TextEditingValue(
+      text: newValue.text.toUpperCase(),
+      selection: newValue.selection,
+    );
+  }
+}

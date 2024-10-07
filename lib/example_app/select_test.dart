@@ -33,6 +33,7 @@ import 'screen/pdf_package_screen.dart';
 import 'screen/pin_put_packages_screen.dart';
 import 'screen/print_screen.dart';
 import 'screen/responsive_widgets_screen.dart';
+import 'screen/string_related_screen.dart';
 import 'screen/tab_bar_screen.dart';
 import 'screen/scaffold_screen.dart';
 import 'screen/number_related_screen.dart';
@@ -228,6 +229,11 @@ class SelectTest extends StatelessWidget {
                     context: context,
                     onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const TextWidgetScreen())),
                     testTile: 'Text 위젯'
+                  ),
+                  textPushBtn(
+                    context: context,
+                    onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const StringRelatedScreen())),
+                    testTile: 'String 관련'
                   ),
                   textPushBtn(
                     context: context,
